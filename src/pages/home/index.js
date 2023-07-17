@@ -7,7 +7,7 @@ import CardContent from '@mui/material/CardContent'
 import {Container} from "@mui/material";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import HomePageCard from "../../components/HomePageCard";
+import HomePageCard from "./components/HomePageCard";
 import {styled} from "@mui/material/styles";
 
 const items =
@@ -29,7 +29,7 @@ const items =
 
 const MyComponent = items.map((item, index) => {
   return (
-    <Grid item xs={3} display='flex' justifyContent="center" alignItems="center">
+    <Grid key={index} item={3} display='flex' justifyContent="center" alignItems="center">
       <HomePageCard text={item.text} image={item.url}/>
     </Grid>
   )

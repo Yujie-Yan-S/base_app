@@ -25,6 +25,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import {red} from "@mui/material/colors";
 import { useRouter } from 'next/router'
+import OverrideFooter from './override/OverrideFooter'
 
 const UserLayout = ({children, contentHeightFixed}) => {
   const router = useRouter();
@@ -139,6 +140,9 @@ const UserLayout = ({children, contentHeightFixed}) => {
           }
         }
       })}
+      footerProps={{
+        content: () => <OverrideFooter />
+      }}
     >
       {children}
 
