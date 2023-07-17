@@ -24,9 +24,11 @@ import {useSettings} from 'src/@core/hooks/useSettings'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import {red} from "@mui/material/colors";
-import {router} from "next/client";
+import { useRouter } from 'next/router'
 
 const UserLayout = ({children, contentHeightFixed}) => {
+  const router = useRouter();
+
   // ** Hooks
   const {settings, saveSettings} = useSettings()
 
@@ -57,28 +59,27 @@ const UserLayout = ({children, contentHeightFixed}) => {
   //     </ul>
   //   )
   // }
-  const handleClick = (e) => {
+
+  const handleClick = ()=>{
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
     router.push('/home')
   }
 
   const AppBrand = () => {
+
     return (
-      <Box onClick={handleClick} sx={{display: 'flex', alignItems: 'center'}}>
-        <style jsx>{`
-          img:hover {
-            opacity: 0.8;
-            cursor: pointer;
-          }
-          text:hover{
-            opacity: 0.8;
-            cursor: pointer;
-          }
-      `}</style>
-        <img src='/brand-icon.png' alt='logo' width='28' height='28' />
+      <Box onClick={handleClick} sx={{display: 'flex', alignItems: 'center',
+        '& .shouldHover:hover':{
+          opacity: 0.8,
+          cursor: 'pointer'
+        }
+      }}>
+        <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
 
 
         <Typography sx={{fontSize: 20, pl:4, mr: 10, display: 'flex',justifyContent:'center', alignItems: 'center'}} noWrap fontWeight="bold">
-          <text>AI ROBOTO EDU</text>
+          <text className={'shouldHover'}>AI ROBOTO EDU</text>
         </Typography>
 
       </Box>

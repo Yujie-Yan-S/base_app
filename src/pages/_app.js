@@ -96,7 +96,7 @@ const App = props => {
   const aclAbilities = Component.acl ?? defaultACLObj
 
   return (
-    
+
       <CacheProvider value={emotionCache}>
         <Head>
           <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
@@ -129,7 +129,7 @@ const App = props => {
           </SettingsProvider>
         </AuthProvider>
       </CacheProvider>
-   
+
   )
 }
 
