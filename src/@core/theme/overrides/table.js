@@ -29,6 +29,9 @@ const Table = () => {
             '&:not(.MuiTableCell-sizeSmall):not(.MuiTableCell-paddingCheckbox):not(.MuiTableCell-paddingNone)': {
               paddingTop: theme.spacing(3.5),
               paddingBottom: theme.spacing(3.5)
+
+              // paddingTop: 0,
+              // paddingBottom: 0
             }
           }
         })

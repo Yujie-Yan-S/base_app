@@ -31,6 +31,7 @@ const Programs = () => {
       titleTag: 'Autonomous'
     }
   ]
+
   const classList = classData.map((item, index) => {
     const backgroundColor =
       index % 2 === 0 ? 'linear-gradient(to right, #787878, #FFFFFF)' : 'linear-gradient(to right, #CACACA, #FEFEFE)'

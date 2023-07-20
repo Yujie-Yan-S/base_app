@@ -17,8 +17,30 @@ body {
   background: white;
 }
 
+/*width for main content*/
+.css-1q5gtkw{
+  max-width: 1165px!important;
+  min-height: 78vh;
+}
+
+
+
+
 .css-sysxdd-MuiContainer-root{
   padding: 0!important;
+}
+
+.css-ojhrtc-MuiContainer-root{
+  padding: 0!important;
+}
+/*footer padding and margin need to be adjust*/
+/*.css-zd76ue{*/
+/*  padding: 0!important;*/
+/*}*/
+
+/*center the layout out side header*/
+.css-34b9xr{
+  align-items: center;
 }
 body {
   background: #e6e6e6!important;

@@ -134,7 +134,8 @@ const UserLayout = ({children, contentHeightFixed}) => {
             branding: () => <AppBrand/>,
             componentProps:{
               sx:{
-                height:77
+                maxWidth:1165,
+                height:'7.2vh'
               }
             }
           }
