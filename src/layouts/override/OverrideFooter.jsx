@@ -1,5 +1,4 @@
 import { Grid, Typography } from '@mui/material'
-
 import TwitterIcon from '@mui/icons-material/Twitter'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
@@ -7,7 +6,8 @@ import PinterestIcon from '@mui/icons-material/Pinterest'
 
 const OverrideFooter = () => {
   return (
-    <Grid
+    
+      <Grid
       container
       spacing={2}
       sx={{
@@ -61,7 +61,8 @@ const OverrideFooter = () => {
         <InstagramIcon />
         <PinterestIcon />
       </Grid>
-    </Grid>
+     </Grid>
+    
   )
 }
 

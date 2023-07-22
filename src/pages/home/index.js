@@ -16,16 +16,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
-
-
-
-
-
-
-
-
-
 const Home = () => {
 
   const settings = {
@@ -71,9 +61,6 @@ const Home = () => {
 
 
   const MyComponent = cards.map((item, index) => {
-
-
-
     return (
       <Grid key={index} item xs={4} sm={4} lg={3} display='flex' justifyContent="center" alignItems="center">
         <HomePageCard text={item.text} image={item.url}/>
@@ -83,7 +70,7 @@ const Home = () => {
 
 
   return (
-    <Container maxWidth={'false'} sx={{p:'0 !important', m:0}}>
+    // <Container maxWidth={'false'} sx={{p:'0 !important', m:0}}>
       <Box container display={"flex"} flexDirection={"column"} >
         {/*carousel*/}
         <Box square sx={{height:'376px'}}>
@@ -119,7 +106,7 @@ const Home = () => {
         </Box>
         </Box>
       </Box>
-    </Container>
+    // </Container>
   )
 }
 

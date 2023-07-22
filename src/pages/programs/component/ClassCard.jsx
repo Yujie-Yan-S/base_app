@@ -23,7 +23,6 @@ export default function ClassCard({ id, title, description, tag, titleTag, backg
                   <Chip
                     label={titleTag}
                     color='primary'
-                    sx={{ backgroundColor: theme => theme.palette.primary.main }}
                   />
                 </Box>
               </Box>
