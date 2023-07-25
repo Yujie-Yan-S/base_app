@@ -1,8 +1,9 @@
 // ** MUI Imports
-import Grid from '@mui/material/Grid'
+import { useEffect } from 'react'
 import ClassCard from './component/ClassCard'
 import { Box, TextField, Typography } from '@mui/material'
-import { margin } from '@mui/system'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPrograms } from 'src/store/features/program_page_list/programSlice'
 
 const Programs = () => {
   const classData = [
@@ -31,8 +32,22 @@ const Programs = () => {
       titleTag: 'Autonomous'
     }
   ]
+  const dispatch = useDispatch()
+  const { programs, status, error } = useSelector(state => state.programs)
 
-  const classList = classData.map((item, index) => {
+  useEffect(() => {
+    dispatch(fetchPrograms())
+  }, [])
+
+  if (status === 'loading') {
+    return <box>Loading...</box>
+  }
+
+  if (status === 'failed') {
+    return <box>Error: {error}</box>
+  }
+
+  const classList = programs?.map((item, index) => {
     const backgroundColor =
       index % 2 === 0 ? 'linear-gradient(to right, #787878, #FFFFFF)' : 'linear-gradient(to right, #CACACA, #FEFEFE)'
 
@@ -40,7 +55,7 @@ const Programs = () => {
       <ClassCard
         key={item.id}
         title={item.title}
-        description={item.description}
+        description={item.des}
         tag={item.tag}
         titleTag={item.titleTag}
         background={backgroundColor}

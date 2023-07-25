@@ -2,10 +2,6 @@
 import Head from 'next/head'
 import { Router } from 'next/router'
 
-
-
-
-
 // ** Loader Import
 import NProgress from 'nprogress'
 
@@ -55,9 +51,8 @@ import 'src/iconify-bundle/icons-bundle-react'
 
 // ** Global css styles
 import '../../styles/globals.css'
-import {Provider} from "react-redux";
-import {store} from "../store/index"
-
+import { Provider } from 'react-redux'
+import { store } from '../store/index'
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -119,9 +114,7 @@ const App = props => {
                   <ThemeComponent settings={settings}>
                     <Guard authGuard={authGuard} guestGuard={guestGuard}>
                       <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard} authGuard={authGuard}>
-
                         {getLayout(<Component {...pageProps} />)}
-
                       </AclGuard>
                     </Guard>
                     <ReactHotToast>

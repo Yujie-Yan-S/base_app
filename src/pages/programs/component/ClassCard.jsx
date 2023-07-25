@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Box, Card, Chip, Button, Typography, CardActions, CardContent } from '@mui/material'
 
 export default function ClassCard({ id, title, description, tag, titleTag, background }) {
-  const tagList = tag.map((item, index) => <Chip key={index} label={item} color='primary' />)
+  const tagList = tag?.map((item, index) => <Chip key={index} label={item} color='primary' />)
 
   return (
     <Box display='flex' alignItems='row' sx={{ backgroundImage: background }}>
