@@ -15,6 +15,7 @@ import { fetchCards } from '../../store/features/home_page_card/cardSlice'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import {fetchImages} from "../../store/features/carousel_pic_list/carouselImagesSlice";
 
 const Home = () => {
   const settings = {
@@ -26,27 +27,23 @@ const Home = () => {
     arrows: false
   }
 
+  const Img = styled('img')({
+    height: '377px',
+    objectFit:"cover"
+  })
+
   const dispatch = useDispatch()
   const { cards, status, error } = useSelector(state => state.cards)
+  const {images, status1,error1}= useSelector(state => state.images)
 
-  const carousels = [
-    {
-      color: 'red'
-    },
-    {
-      color: 'blue'
-    },
-    {
-      color: 'yellow'
-    },
-    {
-      color: 'green'
-    }
-  ]
+
 
   useEffect(() => {
     dispatch(fetchCards())
+    dispatch(fetchImages())
   }, [dispatch])
+
+
 
   if (status === 'loading') {
     return <box>Loading...</box>
@@ -54,6 +51,14 @@ const Home = () => {
 
   if (status === 'failed') {
     return <box>Error: {error}</box>
+  }
+
+  if (status1 === 'loading') {
+    return <box>Loading...</box>
+  }
+
+  if (status1 === 'failed') {
+    return <box>Error: {error1}</box>
   }
 
   const MyComponent = cards.map((item, index) => {
@@ -69,12 +74,15 @@ const Home = () => {
       {/*carousel*/}
       <Box square sx={{ height: '376px' }}>
         <Slider {...settings}>
-          {carousels.map((item, index) => {
+          {images.map((item,index)=>{
             return (
-              <Box key={index} sx={{ backgroundColor: item.color, height: '376px' }}>
-                123
-              </Box>
-            )
+              <Img
+                src={item.url}
+                alt={'loading'}
+                key={index}
+
+              />
+            );
           })}
         </Slider>
       </Box>
