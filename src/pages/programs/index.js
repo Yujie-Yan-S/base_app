@@ -1,37 +1,16 @@
 // ** MUI Imports
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import ClassCard from './component/ClassCard'
 import { Box, TextField, Typography } from '@mui/material'
+import Divider from '@mui/material/Divider'
+import Chip from '@mui/material/Chip'
+import InputAdornment from '@mui/material/InputAdornment'
+import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPrograms } from 'src/store/features/program_page_list/programSlice'
 
 const Programs = () => {
-  const classData = [
-    {
-      id: 100,
-      title: 'Machine Learning Engineer',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa repellat quas voluptas sed eaque suscipit dolor, laboriosam aliquid vel. Necessitatibus dolorum id odit sit inventore facilis magni error iste aperiam?',
-      tag: ['AI', 'ML', 'NPL'],
-      titleTag: 'Autonomous'
-    },
-    {
-      id: 101,
-      title: 'Machine Learning Engineer',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa repellat quas voluptas sed eaque suscipit dolor, laboriosam aliquid vel. Necessitatibus dolorum id odit sit inventore facilis magni error iste aperiam?',
-      tag: ['AI', 'ML', 'NPL'],
-      titleTag: 'Autonomous'
-    },
-    {
-      id: 102,
-      title: 'Machine Learning Engineer',
-      description:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa repellat quas voluptas sed eaque suscipit dolor, laboriosam aliquid vel. Necessitatibus dolorum id odit sit inventore facilis magni error iste aperiam?',
-      tag: ['AI', 'ML', 'NPL'],
-      titleTag: 'Autonomous'
-    }
-  ]
+  const [inputValue, setInputValue] = useState('')
   const dispatch = useDispatch()
   const { programs, status, error } = useSelector(state => state.programs)
 
@@ -46,6 +25,10 @@ const Programs = () => {
   if (status === 'failed') {
     return <box>Error: {error}</box>
   }
+
+  const tags = ['Tag1', 'Tag2', 'Tag3', 'Tag4', 'Tag5', 'Tag6']
+
+  const handleChipClick = () => {}
 
   const classList = programs?.map((item, index) => {
     const backgroundColor =
@@ -74,15 +57,65 @@ const Programs = () => {
         marginTop='2rem'
         marginBottom='2rem'
       >
-        <Typography variant={'h5'} color={theme => theme.palette.primary.main}>
-          Our programs
-        </Typography>
+        <Typography variant={'h3'}>Our programs</Typography>
+        <Divider sx={{ backgroundColor: theme => theme.palette.primary.main, margin: '2rem', width: '70%' }} />
 
         <TextField
-          label='search'
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
+          InputProps={{
+            sx: {
+              placeHolder: 'Search',
+              borderRadius: '25px',
+              height: '2rem'
+            },
+            startAdornment: (
+              <InputAdornment position='start'>
+                <SearchIcon />
+              </InputAdornment>
+            )
+          }}
           id='fullWidth'
-          sx={{ height: '60%', width: '50%', borderRadius: '10px', backgroundColor: '#f0f0f0' }}
+          sx={{ width: '70%', borderRadius: '25px', backgroundColor: '#f0f0f0' }}
         />
+
+        <Box display='flex' flexDirection='column' sx={{ marginTop: '1rem', width: '70%' }}>
+          <Box display='flex' justifyContent='flex-start' gap={8} overflow='hidden'>
+            <Typography variant={'h6'} color={theme => theme.palette.primary.main}>
+              All{' '}
+            </Typography>
+            {tags.map(tag => (
+              <Chip
+                key={tag}
+                label={tag}
+                variant='outlined'
+                onClick={() => handleTagClick(tag)}
+                sx={{
+                  background: 'none', // Remove background color
+                  border: 'none', // Remove outline
+                  color: 'inherit' // Use the default text color
+                }}
+              />
+            ))}
+          </Box>
+          <Box display='flex' justifyContent='flex-start' gap={8} overflow='hidden' sx={{ marginBottom: '1rem' }}>
+            <Typography variant={'h6'} color={theme => theme.palette.primary.main}>
+              All{' '}
+            </Typography>
+            {tags.map(tag => (
+              <Chip
+                key={tag}
+                label={tag}
+                sx={{
+                  background: 'none', // Remove background color
+                  border: 'none', // Remove outline
+                  color: 'inherit' // Use the default text color
+                }}
+                onClick={() => handleTagClick(tag)}
+              />
+            ))}
+          </Box>
+        </Box>
       </Box>
 
       <Box>{classList}</Box>

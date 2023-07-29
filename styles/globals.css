@@ -8,33 +8,38 @@ body {
 }
 /*customized padding*/
 .css-zyg32b {
-  padding: 0!important;
+  padding: 0 !important;
   background: white;
 }
 /*customized padding*/
 .css-1q5gtkw {
-  padding: 0!important;
+  padding: 0 !important;
   background: white;
 }
 
 /*width for main content*/
-.css-1q5gtkw{
-  max-width: 1165px!important;
+.css-1q5gtkw {
+  max-width: 1165px !important;
   min-height: 78vh;
 }
-
-.css-1s71n78{
-  width: 1165px!important;
+/*Footer backgournd*/
+.css-1s71n78 {
+  /* width: 1165px !important; */
   background-color: #004aad;
-
+}
+@media screen and (min-width: 1200px) {
+  .css-1s71n78 {
+    width: 1165px;
+    background-color: #004aad;
+  }
 }
 
-.css-sysxdd-MuiContainer-root{
-  padding: 0!important;
+.css-sysxdd-MuiContainer-root {
+  padding: 0 !important;
 }
 
-.css-ojhrtc-MuiContainer-root{
-  padding: 0!important;
+.css-ojhrtc-MuiContainer-root {
+  padding: 0 !important;
 }
 /*footer padding and margin need to be adjust*/
 /*.css-zd76ue{*/
@@ -42,11 +47,11 @@ body {
 /*}*/
 
 /*center the layout out side header*/
-.css-34b9xr{
+.css-34b9xr {
   align-items: center;
 }
 body {
-  background: #e6e6e6!important;
+  background: #e6e6e6 !important;
 }
 code {
   font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
