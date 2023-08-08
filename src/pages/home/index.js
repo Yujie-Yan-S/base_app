@@ -35,6 +35,9 @@ const Home = () => {
   const dispatch = useDispatch()
   const { cards, status, error } = useSelector(state => state.cards)
   const {images, status1,error1}= useSelector(state => state.images)
+  let urls = images.data || []
+
+  let cardData = cards.data || []
 
 
 
@@ -42,6 +45,7 @@ const Home = () => {
     dispatch(fetchCards())
     dispatch(fetchImages())
   }, [dispatch])
+
 
 
 
@@ -61,10 +65,10 @@ const Home = () => {
     return <box>Error: {error1}</box>
   }
 
-  const MyComponent = cards.map((item, index) => {
+  const MyComponent = cardData.map((item, index) => {
     return (
       <Grid key={index} item xs={4} sm={4} lg={3} display='flex' justifyContent='center' alignItems='center'>
-        <HomePageCard text={item.text} image={item.url} />
+        <HomePageCard text={item.description} image={item.cover} />
       </Grid>
     )
   })
@@ -74,10 +78,11 @@ const Home = () => {
       {/*carousel*/}
       <Box square sx={{ height: '376px' }}>
         <Slider {...settings}>
-          {images.map((item,index)=>{
+
+          {urls.map((item,index)=>{
             return (
               <Img
-                src={item.url}
+                src={item}
                 alt={'loading'}
                 key={index}
 

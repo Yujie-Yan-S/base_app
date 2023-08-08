@@ -53,6 +53,11 @@ const Programs = () => {
 
     return (
       <ClassCard
+
+        // key={1}
+
+        id={item.id}
+
         key={item.id}
         title={item.title}
         description={item.des}
@@ -60,7 +65,8 @@ const Programs = () => {
         titleTag={item.titleTag}
         background={backgroundColor}
       />
-    )
+    );
+
   })
 
   return (

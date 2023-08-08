@@ -4,7 +4,7 @@ import { Box, Card, Chip, Button, Typography, CardActions, CardContent } from '@
 export default function ClassCard({ id, title, description, tag, titleTag, background }) {
   const tagList = tag?.map((item, index) => <Chip key={index} label={item} color='primary' />)
 
-  return (
+return (
     <Box display='flex' alignItems='row' sx={{ backgroundImage: background }}>
       <Box flexBasis='70%'>
         <Card
@@ -59,7 +59,7 @@ export default function ClassCard({ id, title, description, tag, titleTag, backg
         marginBottom='6px'
         sx={{ backgroundColor: 'transparent' }}
       >
-        <Button variant='contained' href={`/program/?id=${id}`}>
+        <Button variant='contained' href={`/programs/programdetails/${id}`}>
           View Program
         </Button>
       </Box>
