@@ -10,19 +10,12 @@ import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 import {Stack} from "@mui/system";
 import Avatar from "@mui/material/Avatar";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 
 const CourseDetails = () => {
   const router = useRouter();
   const { programid } = router.query;
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    arrows: false
-  };
 
   const  data = [
     {text:"asfsadfadsfasf",url:"https://picsum.photos/400/300"},
@@ -36,6 +29,47 @@ const CourseDetails = () => {
     {text:"asfsadfadsfasf",url:"https://picsum.photos/400/300"},
     {text:"asfsadfadsfasf",url:"https://picsum.photos/400/300"}
   ]
+
+  const lg=useMediaQuery(theme => theme.breakpoints.down('lg'))
+  const xl=useMediaQuery(theme => theme.breakpoints.down('xl'))
+  const md=useMediaQuery(theme => theme.breakpoints.down('md'))
+  const sm=useMediaQuery(theme => theme.breakpoints.down('sm'))
+  const xs=useMediaQuery(theme => theme.breakpoints.down('xs'))
+
+
+  let slidesToShow = data.length;
+  let slidesToScroll = data.length;
+
+  if (xs) {
+    slidesToShow = 1;
+    slidesToScroll = 1;
+  } else if (sm) {
+    slidesToShow = 2;
+    slidesToScroll = 2;
+  } else if (md) {
+    slidesToShow = 3;
+    slidesToScroll = 3;
+  } else if (lg) {
+    slidesToShow = 3;
+    slidesToScroll = 3;
+  } else  {
+    slidesToShow = 4;
+    slidesToScroll = 4;
+  }
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: slidesToShow,
+    slidesToScroll: slidesToScroll,
+    arrows: false
+  };
+
+
+
+
+
 
   // 在这里可以根据 courseid 加载相应的课程信息
 
@@ -56,6 +90,7 @@ const CourseDetails = () => {
 
       </Box>
       <Divider sx={{background: theme => theme.palette.primary.main, width: "1037px"}}/>
+      {/*courses*/}
       <Box
         sx={{
           width: '1037px',
