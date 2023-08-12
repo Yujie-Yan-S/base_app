@@ -1,15 +1,13 @@
-import * as React from 'react'
 import { Box, Card, Chip, Button, Typography, CardActions, CardContent } from '@mui/material'
 
 export default function ClassCard({ id, title, description, tag, titleTag, background }) {
-  const tagList = tag?.map((item, index) => <Chip key={index} label={item} color='primary' onClick={()=>{}}/>)
+  const tagList = tag?.map((item, index) => <Chip key={index} label={item} color='primary' onClick={() => {}} />)
 
   const handleProgramClick = () => {}
   const handleTagClick = () => {}
   const handleTitleTagClick = () => {}
 
-
-return (
+  return (
     <Box display='flex' alignItems='row' sx={{ backgroundImage: background }}>
       <Box flexBasis='70%'>
         <Card
@@ -25,11 +23,7 @@ return (
               <Box display='flex' alignItems='center'>
                 <span>{title}</span>
                 <Box marginLeft={6}>
-                  <Chip
-                    label={titleTag}
-                    color='primary'
-                    onClick={() => {}}
-                  />
+                  <Chip label={titleTag} color='primary' onClick={() => {}} />
                 </Box>
               </Box>
             </Typography>
