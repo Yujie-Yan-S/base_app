@@ -43,19 +43,18 @@ const CourseDetails = () => {
 
   return (
     <Box
-      sx={{ border: '2px solid red' }}
       display={'flex'}
       justifyContent={'center'}
       alignItems={'center'}
       flexDirection={'column'}
+      sx={{ background: 'linear-gradient(180deg, #cbcbcb 0%, #FFFFFF 25%, #FFFFFF 100%)' }}
     >
       {/* Banner section */}
 
-      <Box sx={{ width: '85%', border: '2px solid green' }}>
+      <Box sx={{ width: '85%' }}>
         <Box
           sx={{
-            maxHeighteight: '470px',
-            border: '2px solid blue'
+            maxHeighteight: '470px'
           }}
         >
           <Box>
@@ -67,8 +66,7 @@ const CourseDetails = () => {
         {/* Course section */}
         <Box
           sx={{
-            height: '430px',
-            border: '2px solid blue'
+            height: '430px'
           }}
         >
           <Box
@@ -106,13 +104,9 @@ const CourseDetails = () => {
         <Divider sx={{ background: theme => theme.palette.primary.main }} />
 
         {/*Project section */}
-        <Box
-          sx={{
-            border: '2px solid blue'
-          }}
-        >
+        <Box sx={{}}>
           <Box display='flex' alignItems={'center'} sx={{ height: '100px' }}>
-            <Typography variant='h4' color='primary.main' fontWeight={700}>
+            <Typography variant='h4' color='primary.main' fontWeight={700} sx={{ marginTop: '1rem' }}>
               Projects
             </Typography>
           </Box>
@@ -132,8 +126,7 @@ const CourseDetails = () => {
           sx={{
             width: '100%',
             height: '450px',
-            background: 'white',
-            border: '2px solid blue'
+            background: 'white'
           }}
         >
           {/*set the white space*/}

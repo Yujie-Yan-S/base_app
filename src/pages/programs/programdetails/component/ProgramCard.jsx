@@ -18,7 +18,13 @@ export default function ProjectCard({ img }) {
           position: 'relative'
         }}
       >
-        <CardMedia component='img' alt='green iguana' height='200' image='https://picsum.photos/200/300' />
+        <CardMedia
+          component='img'
+          alt='green iguana'
+          height='200'
+          image='https://picsum.photos/200/300'
+          sx={{ opacity: '0.4', '&:hover': { opacity: 1, cursor: 'pointer' } }}
+        />
         <Typography
           variant='h5'
           sx={{

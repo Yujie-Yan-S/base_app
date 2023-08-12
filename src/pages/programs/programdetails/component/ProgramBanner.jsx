@@ -4,7 +4,7 @@ function ProgramBanner() {
   const data = {
     projectName: 'Machine Learning Engineer',
     projectDetail:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut voluptatem beatae totam, aspernatur nulla magni,Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut voluptatem beatae totam, aspernatur nulla magni  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur molestiae laudantium molestias deleniti quibusdam illo odio ab corrupti ducimus, quis asperiores inventore in voluptates iusto vel necessitatibus cumque omnis iste.',
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut voluptatem beatae totam, aspernatur nulla magni,Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut voluptatem beatae totam, aspernatur nulla magni  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur molestiae laudantium molestias deleniti quibusdam illo odio ab',
 
     tag: ['Machine learning', 'AI', 'Data Science', 'NLP', 'XXXXXX', 'C++'],
     lable: 'Advanced Robotics'
@@ -19,13 +19,7 @@ function ProgramBanner() {
   ))
 
   return (
-    <Box
-      display={'flex'}
-      justifyContent={'center'}
-      alignItems={'center'}
-      flexDirection={'column'}
-      sx={{ background: 'linear-gradient(to bottom, #cbcbcb, #FFFFFF)' }}
-    >
+    <Box display={'flex'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}>
       {/* Title box */}
       <Box display={'inline-flex'}>
         <Typography

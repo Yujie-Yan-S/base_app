@@ -49,7 +49,7 @@ const ProjectSlide = () => {
     { src: 'images/programs/tiger.jpeg' }
   ]
   return (
-    <Box sx={{ border: '2px solid red' }}>
+    <Box>
       <Slider {...settings}>
         {data.map((item, i) => (
           <ProjectCard key={i} img={item} />
