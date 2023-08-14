@@ -17,8 +17,6 @@ function SampleNextArrow(props) {
 
 const ProjectSlide = () => {
   const settings = {
-    className: 'center',
-    centerPadding: '60px',
     dots: false,
     infinite: true,
     slidesToShow: 4,

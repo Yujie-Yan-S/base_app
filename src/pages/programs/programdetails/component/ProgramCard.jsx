@@ -8,20 +8,18 @@ import { Box } from '@mui/material'
 
 export default function ProjectCard({ img }) {
   return (
-    // sx={{ border: "5px solid red" }}
-    <Box>
+    <Box display={'flex'} justifyContent={'center'}>
       <Card
         sx={{
-          width: 200,
+          width: 209,
           borderRadius: '8px',
-          boxShadow: '2px 4px 10px rgba(0, 0, 0, 0.5)',
           position: 'relative'
         }}
       >
         <CardMedia
           component='img'
-          alt='green iguana'
-          height='200'
+          alt='project img'
+          height='210'
           image='https://picsum.photos/200/300'
           sx={{ opacity: '0.4', '&:hover': { opacity: 1, cursor: 'pointer' } }}
         />
