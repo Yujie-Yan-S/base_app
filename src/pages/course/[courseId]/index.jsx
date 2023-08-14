@@ -1,8 +1,27 @@
-import { Box, Button, Card, CardMedia, Grid, Typography } from '@mui/material'
+import { Box, Button, Card, CardMedia, Grid, Typography, Tabs, Tab } from '@mui/material'
+import { useState } from 'react'
+import BasicTabs from './component/BasicTab'
 
 export default function CourseDetails() {
+  const [courseDetails, setCourseDetials] = useState('About')
+
+  const courseData = {
+    title: 'Lingke',
+    instructor: 'Dr. Max Li',
+    instructorDetail:
+      'Demonstration text: Guangzhou Lingke Network Technology Co., Ltd. was established in 2015 by a number of industry elites who have long been engaged in online education and Internet financial system technical services. In the context of the Internet and big data era, integrating the advantages of Internet technology and online education, creating an online education platform, saving R&D costs and time for enterprises, and helping institutions and lecturers build their own online education brands.',
+    about:
+      'Demonstration text: Guangzhou Lingke Network Technology Co., Ltd. was established in 2015 by a number of industry elites who have long been engaged in online education and Internet financial system technical services. In the context of the Internet and big data era, integrating the advantages of Internet technology and online education, creating an online education platform, saving R&D costs and time for enterprises, and helping institutions and lecturers build their own online education brands. Its products include "Leading Course Education Cloud", "Leading Course Education System" and "Dragon Fruit Payment System". Education Cloud mainly provides platform operation services and corresponding technical services. The education system mainly provides online education systems and corresponding technical services. The payment system mainly provides the sales of Internet aggregation payment systems and corresponding technical services.Guangzhou Lingke Network Technology Co., Ltd. was established in 2015 by a number of industry elites who have long been engaged in online education and Internet financial system technical services. In the context of the Internet and big data era, integrating the advantages of Internet technology and online education, creating an online education platform, saving R&D costs and time for enterprises, and helping institutions and lecturers build their own online education brands.',
+    syllabus: 'lesson1',
+    enrolled: 700
+  }
+
+  const handleChange = () => {
+    setCourseDetials(courseDetails === 'About' ? 'Syllabus' : 'About')
+  }
+
   return (
-    <>
+    <Box sx={{ border: '2px solid purple', height: '100%' }}>
       {/* Upper section  */}
       <Box sx={{ border: '2px solid red', background: theme => theme.palette.primary.main }}>
         <Box sx={{ marginLeft: '2rem', marginBottom: '2rem' }}>
@@ -66,22 +85,22 @@ export default function CourseDetails() {
       </Box>
 
       {/* Lower Section Class detial  */}
-      <Grid container md={12}>
-        {/* left section */}
-        <Grid item md={8} sx={{ border: '2px solid red' }}>
-          <Typography>Details</Typography>
-        </Grid>
-        {/* right section */}
-        <Grid item md={4} sx={{ border: '2px solid blue' }}>
-          <Typography>Instructor</Typography>
-          <Typography>Dr.Max Li</Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, perspiciatis. Excepturi, eos? Reprehenderit
-            molestiae at, exercitationem aperiam dolores commodi. Natus magnam hic blanditiis deserunt officia iusto?
-            Consequatur officia sit consectetur!
-          </Typography>
-        </Grid>
-      </Grid>
-    </>
+      <Box sx={{ height: '100%', border: '2px solid yellow' }}>
+        <Box sx={{ margin: '2rem ' }}>
+          <Grid container md={12}>
+            {/* left section */}
+            <Grid item md={8} sx={{ border: '2px solid red' }}>
+              <BasicTabs about={courseData.about} syllabus={courseData.syllabus} />
+            </Grid>
+            {/* right section */}
+            <Grid item md={4} sx={{ border: '2px solid blue' }}>
+              <Typography>Instructor</Typography>
+              <Typography>Dr.Max Li</Typography>
+              <Typography>{courseData.instructorDetail}</Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    </Box>
   )
 }
