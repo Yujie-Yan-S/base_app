@@ -3,8 +3,6 @@ import { useState } from 'react'
 import BasicTabs from './component/BasicTab'
 
 export default function CourseDetails() {
-  const [courseDetails, setCourseDetials] = useState('About')
-
   const courseData = {
     title: 'Lingke',
     instructor: 'Dr. Max Li',
@@ -16,17 +14,13 @@ export default function CourseDetails() {
     enrolled: 700
   }
 
-  const handleChange = () => {
-    setCourseDetials(courseDetails === 'About' ? 'Syllabus' : 'About')
-  }
-
   return (
     <Box sx={{ border: '2px solid purple', height: '100%' }}>
       {/* Upper section  */}
       <Box sx={{ border: '2px solid red', background: theme => theme.palette.primary.main }}>
-        <Box sx={{ marginLeft: '2rem', marginBottom: '2rem' }}>
+        <Box sx={{ margin: '2rem', border: '2px solid green' }}>
           {/* Course title */}
-          <Box sx={{ border: '2px solid red', margin: '2rem 0 1.5rem 0' }}>
+          <Box sx={{ border: '2px solid red', margin: '0 0 1.5rem 0' }}>
             <Typography variant='h7' color='white'>
               Course&nbsp;&nbsp;&nbsp;&gt; &nbsp;&nbsp;&nbsp;&nbsp;Lingke Education System{' '}
             </Typography>
@@ -49,7 +43,7 @@ export default function CourseDetails() {
             </Grid>
 
             {/* Right section */}
-            <Grid item md={6} sx={{ border: '2px solid blue' }}>
+            <Grid item md={6}>
               {/* left details */}
               <Grid container md={12} sx={{ border: '2px solid yellow', height: '100%' }}>
                 {/* title, professor and purchase button */}
@@ -74,7 +68,13 @@ export default function CourseDetails() {
                 </Grid>
                 {/* Enrolled number  */}
                 <Grid item md={5}>
-                  <Box display={'flex'} flexDirection={'column'} justifyContent={'flex-end'} sx={{ height: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    flexDirection={'column'}
+                    justifyContent={'flex-end'}
+                    alignItems={'flex-end'}
+                    sx={{ height: '100%' }}
+                  >
                     <Typography variant='h7'>740 already enrolled</Typography>
                   </Box>
                 </Grid>
