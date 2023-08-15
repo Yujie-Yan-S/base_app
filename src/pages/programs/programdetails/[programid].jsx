@@ -5,20 +5,42 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import HomePageCard from '../../home/components/HomePageCard'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
 import { Stack } from '@mui/system'
 import Avatar from '@mui/material/Avatar'
-import ProjectSlide from './component/ProgramSlide'
+import ProjectSlide from './component/ProjectSlide'
 import ProgramBanner from './component/ProgramBanner'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import ProgramCourses from "./component/ProgramCourses";
-import ProgramAssesment from "./component/ProgramAssesment";
+import ProgramCourses from './component/ProgramCourses'
+import ProgramAssesment from './component/ProgramAssesment'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProgramDetail } from 'src/store/features/program_details/programDetailSlice'
 
-const CourseDetails = () => {
+const ProgramDetails = () => {
   const router = useRouter()
-  const { programid } = router.query
+  const dispatch = useDispatch()
+  const { programDetail, status, error } = useSelector(state => state.programDetail)
+
+  console.log(programDetail)
+
+  const pathname = window.location.pathname
+  console.log(pathname)
+  const parts = pathname.split('/')
+  const programId = parts[parts.length - 2]
+
+  useEffect(() => {
+    dispatch(fetchProgramDetail(programId))
+  }, [])
+
+  if (status === 'loading') {
+    return <box>Loading...</box>
+  }
+
+  if (status === 'failed') {
+    return <box>Error: {error}</box>
+  }
 
   const data = [
     { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
@@ -32,8 +54,6 @@ const CourseDetails = () => {
     { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
     { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' }
   ]
-
-
 
   // 在这里可以根据 courseid 加载相应的课程信息
 
@@ -54,13 +74,13 @@ const CourseDetails = () => {
           }}
         >
           <Box>
-            <ProgramBanner />
+            <ProgramBanner name={programDetail.name} description={programDetail.description} />
           </Box>
         </Box>
         <Divider sx={{ background: theme => theme.palette.primary.main }} />
 
         {/* Course section */}
-        <ProgramCourses data={data}/>
+        <ProgramCourses data={data} />
         <Divider sx={{ background: theme => theme.palette.primary.main }} />
 
         {/*Project section */}
@@ -87,4 +107,4 @@ const CourseDetails = () => {
   )
 }
 
-export default CourseDetails
+export default ProgramDetails

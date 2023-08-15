@@ -1,17 +1,13 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Slider from "react-slick";
-import HomePageCard from "../../../home/components/HomePageCard";
-import React from "react";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Slider from 'react-slick'
+import HomePageCard from '../../../home/components/HomePageCard'
+import React from 'react'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
-
-
-
-const ProgramCourses = ({data})=>{
-  console.log('this is the passed data')
-  console.log(data)
-
+const ProgramCourses = ({ data }) => {
+  // console.log('this is the passed data')
+  // console.log(data)
 
   const lg = useMediaQuery(theme => theme.breakpoints.down('lg'))
   const xl = useMediaQuery(theme => theme.breakpoints.down('xl'))
@@ -70,13 +66,14 @@ const ProgramCourses = ({data})=>{
       >
         <Box pt={'59px'} width={'106%'}>
           <Slider {...settings}>
-            {data && data.map((item, i) => {
-              return (
-                <Box key={i} pb={3} display={'flex !important'} justifyContent={'center'}>
-                  <HomePageCard text={item.text} image={item.url} />
-                </Box>
-              )
-            })}
+            {data &&
+              data.map((item, i) => {
+                return (
+                  <Box key={i} pb={3} display={'flex !important'} justifyContent={'center'}>
+                    <HomePageCard text={item.text} image={item.url} />
+                  </Box>
+                )
+              })}
           </Slider>
         </Box>
       </Box>
@@ -84,4 +81,4 @@ const ProgramCourses = ({data})=>{
   )
 }
 
-export default ProgramCourses;
+export default ProgramCourses

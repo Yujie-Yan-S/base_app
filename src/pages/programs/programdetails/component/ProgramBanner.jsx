@@ -1,6 +1,6 @@
 import { Box, Typography, Chip, useMediaQuery } from '@mui/material'
 
-function ProgramBanner() {
+function ProgramBanner({ name, description }) {
   const data = {
     projectName: 'Machine Learning Engineer',
     projectDetail:
@@ -28,7 +28,7 @@ function ProgramBanner() {
           color='primary.text'
           sx={{ position: 'relative', marginTop: '4rem', marginBottom: '1rem', fontWeight: '700' }}
         >
-          {data.projectName}{' '}
+          {name}
           {!isOverSize && (
             <Chip
               label={data.lable}

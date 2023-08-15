@@ -8,9 +8,9 @@ const initialState = {
 }
 
 export const fetchPrograms = createAsyncThunk('programs/fetchPrograms', async () => {
-  const response = await axios.get('/api/programs') // Replace with your API endpoint
+  const response = await axios.get('http://api.airobotoedu.com/api/program/get_program_list')
 
-  return response.data
+  return response.data.data
 })
 
 const programSlice = createSlice({

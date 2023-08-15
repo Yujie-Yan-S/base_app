@@ -1,5 +1,4 @@
 import { Box, Button, Card, CardMedia, Grid, Typography, Tabs, Tab } from '@mui/material'
-import { useState } from 'react'
 import BasicTabs from './component/BasicTab'
 
 export default function CourseDetails() {
@@ -20,7 +19,7 @@ export default function CourseDetails() {
       <Box sx={{ border: '2px solid red', background: theme => theme.palette.primary.main }}>
         <Box sx={{ margin: '2rem', border: '2px solid green' }}>
           {/* Course title */}
-          <Box sx={{ border: '2px solid red', margin: '0 0 1.5rem 0' }}>
+          <Box sx={{ border: '2px solid red', marginBottom: '1.5rem' }}>
             <Typography variant='h7' color='white'>
               Course&nbsp;&nbsp;&nbsp;&gt; &nbsp;&nbsp;&nbsp;&nbsp;Lingke Education System{' '}
             </Typography>

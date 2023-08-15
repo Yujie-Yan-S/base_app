@@ -1,6 +1,6 @@
 // ** MUI Imports
 import { useEffect, useState } from 'react'
-import ClassCard from './component/ClassCard'
+import ProgramCard from './component/ProgramCard'
 import { Box, TextField, Typography } from '@mui/material'
 import Divider from '@mui/material/Divider'
 import Chip from '@mui/material/Chip'
@@ -17,7 +17,6 @@ const Programs = () => {
   useEffect(() => {
     dispatch(fetchPrograms())
   }, [])
-
   if (status === 'loading') {
     return <box>Loading...</box>
   }
@@ -25,31 +24,27 @@ const Programs = () => {
   if (status === 'failed') {
     return <box>Error: {error}</box>
   }
+  // Top category tag
+  const tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5']
 
-  const tags = ['Tag1', 'Tag2', 'Tag3', 'Tag4', 'Tag5', 'Tag6']
-
+  const tempProjectTage = ['Machine learning', 'Data Science', 'XXXX', 'XXXXXX']
   const handleChipClick = () => {}
 
-  const classList = programs?.map((item, index) => {
+  const programList = programs?.map((item, index) => {
     const backgroundColor =
       index % 2 === 0 ? 'linear-gradient(to right, #787878, #FFFFFF)' : 'linear-gradient(to right, #CACACA, #FEFEFE)'
 
     return (
-      <ClassCard
-
-        // key={1}
-
+      <ProgramCard
         id={item.id}
-
         key={item.id}
-        title={item.title}
-        description={item.des}
-        tag={item.tag}
+        title={item.name}
+        description={item.description}
+        tag={item.tag ? item.tag : tempProjectTage}
         titleTag={item.titleTag}
         background={backgroundColor}
       />
-    );
-
+    )
   })
 
   return (
@@ -88,7 +83,7 @@ const Programs = () => {
         <Box display='flex' flexDirection='column' sx={{ marginTop: '1rem', width: '70%' }}>
           <Box display='flex' justifyContent='flex-start' gap={8} overflow='hidden'>
             <Typography variant={'h6'} color={theme => theme.palette.primary.main}>
-              All{' '}
+              All
             </Typography>
             {tags.map(tag => (
               <Chip
@@ -124,7 +119,7 @@ const Programs = () => {
         </Box>
       </Box>
 
-      <Box>{classList}</Box>
+      <Box>{programList}</Box>
       <Box minHeight={'100px'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
         <Typography variant={'h5'} color={theme => theme.palette.primary.main}>
           More course
