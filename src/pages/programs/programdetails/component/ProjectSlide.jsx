@@ -8,6 +8,7 @@ import { Box, useMediaQuery } from '@mui/material'
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props
+
   return (
     <div className={className} style={{ ...style, display: 'block', color: 'blue' }} onClick={onClick}>
       <ArrowForwardIosIcon />
@@ -49,6 +50,7 @@ const ProjectSlide = () => {
     slidesToShow = 4
     slidesToScroll = 4
   }
+
   const settings = {
     dots: false,
     infinite: true,

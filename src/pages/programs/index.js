@@ -16,7 +16,7 @@ const Programs = () => {
 
   useEffect(() => {
     dispatch(fetchPrograms())
-  }, [])
+  }, [dispatch])
   if (status === 'loading') {
     return <box>Loading...</box>
   }
@@ -24,6 +24,7 @@ const Programs = () => {
   if (status === 'failed') {
     return <box>Error: {error}</box>
   }
+
   // Top category tag
   const tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5']
 

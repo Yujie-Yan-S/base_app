@@ -3,11 +3,6 @@ import axios from 'axios'
 
 const initialState = {
   programDetail: {},
-  //   name: '',
-  //   description: '',
-  //   tag: [],
-  //   projectList: [],
-  //   courseList: [],
   status: 'loding',
   error: null
 }

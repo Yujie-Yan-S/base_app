@@ -32,7 +32,7 @@ const ProgramDetails = () => {
 
   useEffect(() => {
     dispatch(fetchProgramDetail(programId))
-  }, [])
+  }, [dispatch])
 
   if (status === 'loading') {
     return <box>Loading...</box>
