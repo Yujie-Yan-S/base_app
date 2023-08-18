@@ -98,9 +98,7 @@ export default function CourseDetails() {
                     alignItems={'flex-start'}
                     sx={{ height: '100%' }}
                   >
-                    <Typography variant='h7' pb={2}>
-                      740 already enrolled
-                    </Typography>
+                    <Typography variant='h7'>740 already enrolled</Typography>
                   </Box>
                 </Grid>
               </Grid>
