@@ -21,12 +21,9 @@ import { fetchProgramDetail } from 'src/store/features/program_details/programDe
 const ProgramDetails = () => {
   const router = useRouter()
   const dispatch = useDispatch()
-  const { programDetail, status, error } = useSelector(state => state.programDetail)
-
-  console.log(programDetail)
+  const { programDetailData, status, error } = useSelector(state => state.programDetail)
 
   const pathname = window.location.pathname
-  console.log(pathname)
   const parts = pathname.split('/')
   const programId = parts[parts.length - 2]
 
@@ -74,7 +71,7 @@ const ProgramDetails = () => {
           }}
         >
           <Box>
-            <ProgramBanner name={programDetail.name} description={programDetail.description} />
+            <ProgramBanner name={programDetailData.name} description={programDetailData.description} />
           </Box>
         </Box>
         <Divider sx={{ background: theme => theme.palette.primary.main }} />
