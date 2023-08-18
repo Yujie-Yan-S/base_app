@@ -1,5 +1,8 @@
 import { Box, Button, Card, CardMedia, Grid, Typography, Tabs, Tab } from '@mui/material'
 import BasicTabs from './component/BasicTab'
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
+import React from "react";
 
 export default function CourseDetails() {
   const courseData = {
@@ -9,7 +12,15 @@ export default function CourseDetails() {
       'Demonstration text: Guangzhou Lingke Network Technology Co., Ltd. was established in 2015 by a number of industry elites who have long been engaged in online education and Internet financial system technical services. In the context of the Internet and big data era, integrating the advantages of Internet technology and online education, creating an online education platform, saving R&D costs and time for enterprises, and helping institutions and lecturers build their own online education brands.',
     about:
       'Demonstration text: Guangzhou Lingke Network Technology Co., Ltd. was established in 2015 by a number of industry elites who have long been engaged in online education and Internet financial system technical services. In the context of the Internet and big data era, integrating the advantages of Internet technology and online education, creating an online education platform, saving R&D costs and time for enterprises, and helping institutions and lecturers build their own online education brands. Its products include "Leading Course Education Cloud", "Leading Course Education System" and "Dragon Fruit Payment System". Education Cloud mainly provides platform operation services and corresponding technical services. The education system mainly provides online education systems and corresponding technical services. The payment system mainly provides the sales of Internet aggregation payment systems and corresponding technical services.Guangzhou Lingke Network Technology Co., Ltd. was established in 2015 by a number of industry elites who have long been engaged in online education and Internet financial system technical services. In the context of the Internet and big data era, integrating the advantages of Internet technology and online education, creating an online education platform, saving R&D costs and time for enterprises, and helping institutions and lecturers build their own online education brands.',
-    syllabus: 'lesson1',
+    syllabus: ['adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'
+    ,'adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'
+    ,'adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'
+    ,'adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'
+    ,'adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'
+    ,'adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'
+    ,'adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'
+    ,'adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'
+    ,'adsfasfadsf as asdfasdfas asdfas d fasdf asdfasfasdf asd asdfasf asdf asdf asd asdfasdf asd adsf asdfasd dfa adsd as asdfadsfdasf asdfasdfasdfadsf asd adsadsfsda sdf adsfsfasdfasdf asdfasdfas'],
     enrolled: 700
   }
 
@@ -89,13 +100,23 @@ export default function CourseDetails() {
           <Grid container md={12}>
             {/* left section */}
             <Grid item md={8} sx={{ border: '2px solid red' }}>
-              <BasicTabs about={courseData.about} syllabus={courseData.syllabus} />
+              <BasicTabs  about={courseData.about} syllabus={courseData.syllabus} />
             </Grid>
             {/* right section */}
             <Grid item md={4} sx={{ border: '2px solid blue' }}>
-              <Typography>Instructor</Typography>
-              <Typography>Dr.Max Li</Typography>
-              <Typography>{courseData.instructorDetail}</Typography>
+              <Typography height={'10%'} fontWeight={'700'} fontSize={'20px'} display={"flex"} alignItems={"center"}>Instructor </Typography>
+              <Divider sx={{ background: theme => theme.palette.primary.main }} />
+
+              <Box height={'90%'}>
+                <Box height={'28.8%'}  display={"flex"} justifyContent={"start"} alignItems={"center"}>
+                  <Avatar sx={{mr:6, height:'50px' ,width:'50px'}}> </Avatar>
+                  <Typography color={'black'} fontWeight={'600'} variant={'h6'}>{courseData.instructor}</Typography>
+                </Box>
+                <Typography fontWeight={'500'} fontSize={'15px'} color={'black'}>
+                  {courseData.instructorDetail}
+                </Typography>
+              </Box>
+
             </Grid>
           </Grid>
         </Box>
