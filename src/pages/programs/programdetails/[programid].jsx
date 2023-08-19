@@ -39,7 +39,6 @@ const ProgramDetails = () => {
 
   useEffect(() => {
     dispatch(fetchProgramDetail(programId))
-
   }, [dispatch])
 
 
@@ -53,8 +52,7 @@ const ProgramDetails = () => {
 
 
   if (status === 'loading') {
-
-return <box>Loading...</box>
+    return <box>Loading...</box>
   }
 
   if (status === 'failed') {
@@ -84,7 +82,7 @@ return <box>Loading...</box>
           }}
         >
           <Box>
-            <ProgramBanner name={programDetail.name} description={programDetail.description} />
+            <ProgramBanner name={programDetailData.name} description={programDetailData.description} />
           </Box>
         </Box>
         <Divider sx={{ background: theme => theme.palette.primary.main }} />

@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
-  programDetail: {},
+  programDetailData: {},
   status: 'loding',
   error: null
 }
 
-export const fetchProgramDetail = createAsyncThunk('programs_detail', async id => {
+export const fetchProgramDetail = createAsyncThunk('fetchProgramDetail', async id => {
   const response = await axios.get(`http://api.airobotoedu.com/api/program/get_program_detail?id=${id}`) //
 
   return response.data.data
@@ -24,7 +24,7 @@ const programDetailSlice = createSlice({
       })
       .addCase(fetchProgramDetail.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.programDetail = action.payload
+        state.programDetailData = action.payload
       })
       .addCase(fetchProgramDetail.rejected, (state, action) => {
         state.status = 'failed'

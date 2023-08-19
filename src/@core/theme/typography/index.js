@@ -36,6 +36,9 @@ const typography = {
   h6: {
     letterSpacing: '0.15px'
   },
+  body: {
+    fontWeight: 500
+  },
   subtitle1: {
     letterSpacing: '0.15px'
   },
