@@ -17,20 +17,19 @@ import ProgramCourses from './component/ProgramCourses'
 import ProgramAssesment from './component/ProgramAssesment'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProgramDetail } from 'src/store/features/program_details/programDetailSlice'
-import {fetchCourses} from "../../../store/features/courses_list/coursesSlice";
+import { fetchCourses } from '../../../store/features/courses_list/coursesSlice'
+import { fetchProjects } from 'src/store/features/project_list/projectSlice'
 
 const ProgramDetails = () => {
   const router = useRouter()
   const id = router.query.programid
 
-
   const dispatch = useDispatch()
-  const { programDetail ,status,error} = useSelector(state => state.programDetail)
+  const { programDetailData, status, error } = useSelector(state => state.programDetail)
 
-  const { courses, status1, error1} = useSelector(state => state.courses)
+  const { courses, status1, error1 } = useSelector(state => state.courses)
 
-
-
+  const { projects, status2, error2 } = useSelector(state => state.projects)
 
   const pathname = window.location.pathname
 
@@ -41,15 +40,17 @@ const ProgramDetails = () => {
     dispatch(fetchProgramDetail(programId))
   }, [dispatch])
 
-
-  useEffect(()=>{
+  useEffect(() => {
     if (id) {
-      dispatch(fetchCourses({ id, page: 1, num: 2 }));
+      dispatch(fetchCourses({ id, page: 1, num: 2 }))
     }
-
   }, [dispatch, id])
 
-
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchProjects({ id, page: 1, num: 2 }))
+    }
+  }, [dispatch, id])
 
   if (status === 'loading') {
     return <box>Loading...</box>
@@ -59,9 +60,9 @@ const ProgramDetails = () => {
     return <box>Error: {error}</box>
   }
 
+  const data = courses ? courses.data : null
 
-  const data = courses?courses.data:null
-
+  console.log('projects are ', projects)
 
   // 在这里可以根据 courseid 加载相应的课程信息
 
@@ -101,7 +102,7 @@ const ProgramDetails = () => {
           <Box display={'flex'} justifyContent={'center'} sx={{ marginBottom: '2rem' }}>
             {/* if I add this line, we can match the gap between cards */}
             <Box width={'106%'}>
-              <ProjectSlide />
+              <ProjectSlide data={projects} />
             </Box>
           </Box>
         </Box>

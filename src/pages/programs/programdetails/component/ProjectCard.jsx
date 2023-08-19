@@ -6,7 +6,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/material'
 
-export default function ProjectCard({ img }) {
+export default function ProjectCard({ name, img }) {
   return (
     <Box display={'flex'} justifyContent={'center'}>
       <Card
@@ -20,7 +20,7 @@ export default function ProjectCard({ img }) {
           component='img'
           alt='project img'
           height='210'
-          image='https://picsum.photos/200/300'
+          image={img}
           sx={{ opacity: '0.4', '&:hover': { opacity: 1, cursor: 'pointer' } }}
         />
         <Typography
@@ -30,10 +30,11 @@ export default function ProjectCard({ img }) {
             top: '80%',
             left: '20%',
             transform: 'translate(-50%, -50%)',
-            color: 'black'
+            color: 'black',
+            pl: 4
           }}
         >
-          Project
+          {name}
         </Typography>
         {/* <CardContent>
           <Typography gutterBottom variant="h5" component="div">

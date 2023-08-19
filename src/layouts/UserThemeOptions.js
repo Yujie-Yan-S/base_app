@@ -26,7 +26,7 @@ const UserThemeOptions = () => {
         contrastText: '#FFF'
       },
       customColors: {
-        text: '#000000',
+        lightText: '#FFFFFF',
         darkText: '#000000'
       }
     },

@@ -3,9 +3,7 @@ import BasicTabs from './component/BasicTab'
 import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
 import React from 'react'
-import Breadcrumbs from 'src/@core/theme/overrides/breadcrumbs'
 import CustomBreadcrumb from './component/Breadcrumb'
-import { borderRadius } from '@mui/system'
 
 export default function CourseDetails() {
   const courseData = {
