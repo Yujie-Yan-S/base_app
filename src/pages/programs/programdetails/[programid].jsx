@@ -17,43 +17,53 @@ import ProgramCourses from './component/ProgramCourses'
 import ProgramAssesment from './component/ProgramAssesment'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProgramDetail } from 'src/store/features/program_details/programDetailSlice'
+import {fetchCourses} from "../../../store/features/courses_list/coursesSlice";
 
 const ProgramDetails = () => {
   const router = useRouter()
-  const dispatch = useDispatch()
-  const { programDetail, status, error } = useSelector(state => state.programDetail)
+  const id = router.query.programid
 
-  console.log(programDetail)
+
+  const dispatch = useDispatch()
+  const { programDetail ,status,error} = useSelector(state => state.programDetail)
+
+  const { courses, status1, error1} = useSelector(state => state.courses)
+
+
+
 
   const pathname = window.location.pathname
-  console.log(pathname)
+
   const parts = pathname.split('/')
   const programId = parts[parts.length - 2]
 
   useEffect(() => {
     dispatch(fetchProgramDetail(programId))
+
   }, [dispatch])
 
+
+  useEffect(()=>{
+    if (id) {
+      dispatch(fetchCourses({ id, page: 1, num: 2 }));
+    }
+
+  }, [dispatch, id])
+
+
+
   if (status === 'loading') {
-    return <box>Loading...</box>
+
+return <box>Loading...</box>
   }
 
   if (status === 'failed') {
     return <box>Error: {error}</box>
   }
 
-  const data = [
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' },
-    { text: 'asfsadfadsfasf', url: 'https://picsum.photos/400/300' }
-  ]
+
+  const data = courses?courses.data:null
+
 
   // 在这里可以根据 courseid 加载相应的课程信息
 

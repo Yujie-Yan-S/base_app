@@ -15,24 +15,28 @@ const ProgramCourses = ({ data }) => {
   const sm = useMediaQuery(theme => theme.breakpoints.down('sm'))
   const xs = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
-  let slidesToShow = data.length
-  let slidesToScroll = data.length
+  console.log(data)
+
+  let slidesToShow = data && data.length
+  let slidesToScroll =data && data.length
+
+
 
   if (xs) {
-    slidesToShow = 1
-    slidesToScroll = 1
+    slidesToShow = slidesToShow>1?1:slidesToShow
+    slidesToScroll = slidesToScroll>1?1:slidesToScroll
   } else if (sm) {
-    slidesToShow = 1
-    slidesToScroll = 1
+    slidesToShow = slidesToShow>1?1:slidesToShow
+    slidesToScroll = slidesToScroll>1?1:slidesToScroll
   } else if (md) {
-    slidesToShow = 2
-    slidesToScroll = 2
+    slidesToShow = slidesToShow>2?2:slidesToShow
+    slidesToScroll = slidesToScroll>2?2:slidesToScroll
   } else if (lg) {
-    slidesToShow = 3
-    slidesToScroll = 3
+    slidesToShow = slidesToShow>3?3:slidesToShow
+    slidesToScroll = slidesToScroll>3?3:slidesToScroll
   } else {
-    slidesToShow = 4
-    slidesToScroll = 4
+    slidesToShow = slidesToShow>4?4:slidesToShow
+    slidesToScroll = slidesToScroll>4?4:slidesToScroll
   }
 
   const settings = {
@@ -70,7 +74,7 @@ const ProgramCourses = ({ data }) => {
               data.map((item, i) => {
                 return (
                   <Box key={i} pb={3} display={'flex !important'} justifyContent={'center'}>
-                    <HomePageCard text={item.text} image={item.url} />
+                    <HomePageCard text={item.description} image={item.cover} />
                   </Box>
                 )
               })}
