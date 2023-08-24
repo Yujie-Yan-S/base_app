@@ -15,28 +15,24 @@ const ProgramCourses = ({ data }) => {
   const sm = useMediaQuery(theme => theme.breakpoints.down('sm'))
   const xs = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
-  console.log(data)
-
   let slidesToShow = data && data.length
-  let slidesToScroll =data && data.length
-
-
+  let slidesToScroll = data && data.length
 
   if (xs) {
-    slidesToShow = slidesToShow>1?1:slidesToShow
-    slidesToScroll = slidesToScroll>1?1:slidesToScroll
+    slidesToShow = slidesToShow > 1 ? 1 : slidesToShow
+    slidesToScroll = slidesToScroll > 1 ? 1 : slidesToScroll
   } else if (sm) {
-    slidesToShow = slidesToShow>1?1:slidesToShow
-    slidesToScroll = slidesToScroll>1?1:slidesToScroll
+    slidesToShow = slidesToShow > 1 ? 1 : slidesToShow
+    slidesToScroll = slidesToScroll > 1 ? 1 : slidesToScroll
   } else if (md) {
-    slidesToShow = slidesToShow>2?2:slidesToShow
-    slidesToScroll = slidesToScroll>2?2:slidesToScroll
+    slidesToShow = slidesToShow > 2 ? 2 : slidesToShow
+    slidesToScroll = slidesToScroll > 2 ? 2 : slidesToScroll
   } else if (lg) {
-    slidesToShow = slidesToShow>3?3:slidesToShow
-    slidesToScroll = slidesToScroll>3?3:slidesToScroll
+    slidesToShow = slidesToShow > 3 ? 3 : slidesToShow
+    slidesToScroll = slidesToScroll > 3 ? 3 : slidesToScroll
   } else {
-    slidesToShow = slidesToShow>4?4:slidesToShow
-    slidesToScroll = slidesToScroll>4?4:slidesToScroll
+    slidesToShow = slidesToShow > 4 ? 4 : slidesToShow
+    slidesToScroll = slidesToScroll > 4 ? 4 : slidesToScroll
   }
 
   const settings = {

@@ -2,7 +2,6 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Slider from 'react-slick'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ProjectCard from './ProjectCard'
 import { Box, useMediaQuery } from '@mui/material'
 
@@ -16,39 +15,34 @@ function SampleNextArrow(props) {
   )
 }
 
-const ProjectSlide = () => {
-  const data = [
-    { src: 'images/programs/reptile.jpeg' },
-    { src: 'images/programs/dogs.jpeg' },
-    { src: 'images/programs/elephant.jpeg' },
-    { src: 'images/programs/fox.jpeg' },
-    { src: 'images/programs/deer.jpeg' },
-    { src: 'images/programs/tiger.jpeg' }
-  ]
+const ProjectSlide = ({ data }) => {
+  console.log('data is ', data)
+  // console.log('data is ', data.data[0].cover)
+
   const lg = useMediaQuery(theme => theme.breakpoints.down('lg'))
   const xl = useMediaQuery(theme => theme.breakpoints.down('xl'))
   const md = useMediaQuery(theme => theme.breakpoints.down('md'))
   const sm = useMediaQuery(theme => theme.breakpoints.down('sm'))
   const xs = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
-  let slidesToShow = data.length
-  let slidesToScroll = data.length
+  let slidesToShow = data && data.length
+  let slidesToScroll = data && data.length
 
   if (xs) {
-    slidesToShow = 1
-    slidesToScroll = 1
+    slidesToShow = slidesToShow > 1 ? 1 : slidesToShow
+    slidesToScroll = slidesToScroll > 1 ? 1 : slidesToScroll
   } else if (sm) {
-    slidesToShow = 1
-    slidesToScroll = 1
+    slidesToShow = slidesToShow > 1 ? 1 : slidesToShow
+    slidesToScroll = slidesToScroll > 1 ? 1 : slidesToScroll
   } else if (md) {
-    slidesToShow = 2
-    slidesToScroll = 2
+    slidesToShow = slidesToShow > 2 ? 2 : slidesToShow
+    slidesToScroll = slidesToScroll > 2 ? 2 : slidesToScroll
   } else if (lg) {
-    slidesToShow = 3
-    slidesToScroll = 3
+    slidesToShow = slidesToShow > 3 ? 3 : slidesToShow
+    slidesToScroll = slidesToScroll > 3 ? 3 : slidesToScroll
   } else {
-    slidesToShow = 4
-    slidesToScroll = 4
+    slidesToShow = slidesToShow > 4 ? 4 : slidesToShow
+    slidesToScroll = slidesToScroll > 4 ? 4 : slidesToScroll
   }
 
   const settings = {
@@ -57,28 +51,14 @@ const ProjectSlide = () => {
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToScroll,
     arrows: true,
-    nextArrow: <SampleNextArrow />,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1
-        }
-      }
-    ]
+    nextArrow: <SampleNextArrow />
   }
 
   return (
     <Box>
       <Slider {...settings}>
         {data.map((item, i) => (
-          <ProjectCard key={i} img={item} />
+          <ProjectCard key={i} name={item.name} img={item.cover} />
         ))}
       </Slider>
     </Box>

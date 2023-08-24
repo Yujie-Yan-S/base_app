@@ -58,7 +58,6 @@ export default function BasicTabs({ about, syllabus }) {
       </Box>
       <CustomTabPanel value={value} index={0}>
         <Typography variant='body' color={'customColors.darkText'}>
-          {' '}
           {about}
         </Typography>
       </CustomTabPanel>
