@@ -2,7 +2,7 @@ import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} fr
 import Button from "@mui/material/Button";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Divider from "@mui/material/Divider";
 
 function LoginTabContent() {
@@ -13,12 +13,21 @@ function SignupTabContent() {
   return 456;
 }
 
-const LoginDialog = ({open, onClose})=>{
-  const [activeTab, setActiveTab] = useState(0);
+const LoginDialog = ({open, onClose, initialTab})=>{
+  console.log(initialTab)
+  const [activeTab, setActiveTab] = useState(1);
+
+  useEffect(() => {
+    setActiveTab(initialTab)
+  }, [initialTab]);
+
+  console.log(activeTab)
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
+
+
 
   return (
     <Dialog
@@ -27,7 +36,7 @@ const LoginDialog = ({open, onClose})=>{
       fullWidth={true}
       maxWidth={'xs'}
     >
-      <Tabs value={activeTab} onChange={handleTabChange} sx={{display:'flex', justifyContent:'space-evenly'}}>
+      <Tabs value={activeTab} onChange={handleTabChange} sx={{display:'flex'}}>
         <Tab label="Log In"/>
         <Tab label="Sign Up"/>
       </Tabs>

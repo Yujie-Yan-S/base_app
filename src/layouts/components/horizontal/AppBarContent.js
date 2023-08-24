@@ -30,6 +30,8 @@ import {useState} from "react";
 const AppBarContent = props => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  const [initialTab, setInitialTab] = useState(0);
+
 
   const handleDialogClose = () => {
     setDialogOpen(false);
@@ -40,10 +42,12 @@ const AppBarContent = props => {
 
   const handleLogin = ()=>{
     setDialogOpen(true);
+    setInitialTab(0)
   }
 
   const handleRegister = ()=>{
-    router.push('/register')
+    setDialogOpen(true);
+    setInitialTab(1)
   }
 
 
@@ -66,7 +70,7 @@ return (
         Sign Up
       </Typography>
       </div>
-      <CustomLogin open={dialogOpen} onClose={handleDialogClose} />
+      <CustomLogin open={dialogOpen} onClose={handleDialogClose}  initialTab={initialTab}/>
     </Box>
   )
 }

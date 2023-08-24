@@ -74,3 +74,13 @@ code[class*='language-'] {
 .MuiDialog-paperWidthXs{
   width: 493px !important;
 }
+
+/*this is for the login tabs*/
+.css-1pyy021-MuiTabs-flexContainer{
+  justify-content: space-evenly;
+}
+
+
+body[style^="padding-right"] .layout-navbar-and-nav-container::after{
+  width: 0px !important;
+}
