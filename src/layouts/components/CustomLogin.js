@@ -1,53 +1,45 @@
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
-import Button from "@mui/material/Button";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import {useEffect, useState} from "react";
-import Divider from "@mui/material/Divider";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
+import Button from '@mui/material/Button'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import { useEffect, useState } from 'react'
+import Divider from '@mui/material/Divider'
 
 function LoginTabContent() {
-  return 123;
+  return 123
 }
 
 function SignupTabContent() {
-  return 456;
+  return 456
 }
 
-const LoginDialog = ({open, onClose, initialTab})=>{
-  console.log(initialTab)
-  const [activeTab, setActiveTab] = useState(1);
+const LoginDialog = ({ open, onClose, initialTab, switchTab }) => {
+  // useEffect(() => {
+  //   setActiveTab(initialTab)
+  // }, [initialTab])
 
-  useEffect(() => {
-    setActiveTab(initialTab)
-  }, [initialTab]);
-
-  console.log(activeTab)
+  // console.log(activeTab)
 
   const handleTabChange = (event, newValue) => {
-    setActiveTab(newValue);
-  };
+    console.log(newValue)
 
-
+    switchTab(newValue)
+  }
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      fullWidth={true}
-      maxWidth={'xs'}
-    >
-      <Tabs value={activeTab} onChange={handleTabChange} sx={{display:'flex'}}>
-        <Tab label="Log In"/>
-        <Tab label="Sign Up"/>
+    <Dialog open={open} onClose={onClose} fullWidth={true} maxWidth={'xs'}>
+      <Tabs value={initialTab} onChange={handleTabChange} sx={{ display: 'flex' }}>
+        <Tab label='Log In' />
+        <Tab label='Sign Up' />
       </Tabs>
       <Divider sx={{ backgroundColor: theme => theme.palette.primary.main }} />
 
       <DialogContent>
-        {activeTab === 0 && <LoginTabContent/>} {/* Render Login content when activeTab is 0 */}
-        {activeTab === 1 && <SignupTabContent/>} {/* Render Signup content when activeTab is 1 */}
+        {initialTab === 0 && <LoginTabContent />} {/* Render Login content when activeTab is 0 */}
+        {initialTab === 1 && <SignupTabContent />} {/* Render Signup content when activeTab is 1 */}
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
 export default LoginDialog

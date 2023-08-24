@@ -2,10 +2,6 @@
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import CardHeader from '@mui/material/CardHeader'
-import CardContent from '@mui/material/CardContent'
-import { Container } from '@mui/material'
-import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import HomePageCard from './components/HomePageCard'
 import { styled } from '@mui/material/styles'
@@ -15,8 +11,8 @@ import { fetchCards } from '../../store/features/home_page_card/cardSlice'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import {fetchImages} from "../../store/features/carousel_pic_list/carouselImagesSlice";
-import LoginPage from "../login";
+import { fetchImages } from '../../store/features/carousel_pic_list/carouselImagesSlice'
+import LoginPage from '../login'
 
 const Home = () => {
   const settings = {
@@ -30,25 +26,20 @@ const Home = () => {
 
   const Img = styled('img')({
     height: '377px',
-    objectFit:"cover"
+    objectFit: 'cover'
   })
 
   const dispatch = useDispatch()
   const { cards, status, error } = useSelector(state => state.cards)
-  const {images, status1,error1}= useSelector(state => state.images)
+  const { images, status1, error1 } = useSelector(state => state.images)
   let urls = images.data || []
 
   let cardData = cards.data || []
-
-
 
   useEffect(() => {
     dispatch(fetchCards())
     dispatch(fetchImages())
   }, [dispatch])
-
-
-
 
   if (status === 'loading') {
     return <box>Loading...</box>
@@ -79,16 +70,8 @@ const Home = () => {
       {/*carousel*/}
       <Box square sx={{ height: '376px' }}>
         <Slider {...settings}>
-
-          {urls.map((item,index)=>{
-            return (
-              <Img
-                src={item}
-                alt={'loading'}
-                key={index}
-
-              />
-            );
+          {urls.map((item, index) => {
+            return <Img src={item} alt={'loading'} key={index} />
           })}
         </Slider>
       </Box>
@@ -124,6 +107,5 @@ const Home = () => {
 }
 
 Home.authGuard = false
-
 
 export default Home
