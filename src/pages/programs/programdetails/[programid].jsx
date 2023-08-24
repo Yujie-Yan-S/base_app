@@ -22,10 +22,11 @@ import {fetchCourses} from "../../../store/features/courses_list/coursesSlice";
 const ProgramDetails = () => {
   const router = useRouter()
   const id = router.query.programid
+  console.log('id is ', id)
 
 
   const dispatch = useDispatch()
-  const { programDetail ,status,error} = useSelector(state => state.programDetail)
+  const { programDetailData ,status,error} = useSelector(state => state.programDetail)
 
   const { courses, status1, error1} = useSelector(state => state.courses)
 

@@ -16,6 +16,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import {fetchImages} from "../../store/features/carousel_pic_list/carouselImagesSlice";
+import LoginPage from "../login";
 
 const Home = () => {
   const settings = {
@@ -121,5 +122,8 @@ const Home = () => {
     </Box>
   )
 }
+
+Home.authGuard = false
+
 
 export default Home

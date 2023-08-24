@@ -68,3 +68,9 @@ code:not([class*='language-']):after {
 code[class*='language-'] {
   padding: 0;
 }
+
+
+/*this is for the width of login modal*/
+.MuiDialog-paperWidthXs{
+  width: 493px !important;
+}

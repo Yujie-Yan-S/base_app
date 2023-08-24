@@ -24,13 +24,22 @@ import Navigation from '../CustomNavigation'
 import UserDropdown from 'src/@core/layouts/components/shared-components/UserDropdown'
 import Typography from "@mui/material/Typography";
 import { useRouter } from 'next/router'
+import CustomLogin from "../CustomLogin";
+import {useState} from "react";
 
 const AppBarContent = props => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   const { settings, horizontalNavItems } = props
   const router = useRouter()
 
   const handleLogin = ()=>{
-    router.push('/login')
+    setDialogOpen(true);
   }
 
   const handleRegister = ()=>{
@@ -57,6 +66,7 @@ return (
         Sign Up
       </Typography>
       </div>
+      <CustomLogin open={dialogOpen} onClose={handleDialogClose} />
     </Box>
   )
 }
