@@ -72,7 +72,8 @@ code[class*='language-'] {
 
 /*this is for the width of login modal*/
 .MuiDialog-paperWidthXs{
-  width: 493px !important;
+  width: 490px !important;
+  max-width: 490px !important;
 }
 
 /*this is for the login tabs*/
@@ -84,3 +85,5 @@ code[class*='language-'] {
 body[style^="padding-right"] .layout-navbar-and-nav-container::after{
   width: 0px !important;
 }
+
+
