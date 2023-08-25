@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import {styled} from "@mui/material/styles";
 
 function LoginTabContent() {
   return 123
@@ -20,6 +21,14 @@ function SignupTabContent() {
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+
+
+  const CustomTextField = styled(TextField)({
+    '& .MuiOutlinedInput-root': {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  });
 
   return (
     <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
@@ -77,14 +86,13 @@ function SignupTabContent() {
         </Typography>
         <Box display={"flex"} width={'100%'} mb={4}>
           <Box width={'80%'}>
-            <TextField
-              sx={{borderRadius:0}}
+            <CustomTextField
               label="Please enter verification code"
               type="password"
               fullWidth={true}
             /></Box>
           <Box width={'30%'}>
-            <Button variant="contained" sx={{height:"56px"}} >Get Code</Button>
+            <Button variant="contained" sx={{height:"56px", borderTopLeftRadius:0, borderBottomLeftRadius:0}} >Get Code</Button>
           </Box>
         </Box>
 
@@ -96,6 +104,9 @@ function SignupTabContent() {
 
         <Button variant="contained" sx={{width:"50%"}}>Sign Up</Button>
       </Box>
+
+
+
 
 
     </Box>
