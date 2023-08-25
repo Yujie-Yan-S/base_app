@@ -4,9 +4,10 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import { useEffect, useState } from 'react'
 import Divider from '@mui/material/Divider'
+import LoginForm from './horizontal/LoginForm'
 
 function LoginTabContent() {
-  return 123
+  return <LoginForm />
 }
 
 function SignupTabContent() {
