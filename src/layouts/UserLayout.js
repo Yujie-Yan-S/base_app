@@ -81,7 +81,7 @@ const UserLayout = ({children, contentHeightFixed}) => {
 
 
         <Typography sx={{fontSize: 20, pl:4, mr: 10, display: 'flex',justifyContent:'center', alignItems: 'center'}} noWrap fontWeight="bold">
-          <text className={'shouldHover'}>AI ROBOTO EDU</text>
+          <Box className={'shouldHover'}>AI ROBOTO EDU</Box>
         </Typography>
 
       </Box>

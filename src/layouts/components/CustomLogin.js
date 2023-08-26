@@ -11,11 +11,19 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import {styled} from "@mui/material/styles";
 
+import {clearError, clearMessage, generateOTP, registerUser} from "../../store/features/authentication/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import Alert from "@mui/material/Alert";
+
+import { nanoid } from 'nanoid';
+
 function LoginTabContent() {
   return 123
 }
 
 function SignupTabContent() {
+  const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
 
   const handleChange = (event) => {
@@ -23,14 +31,70 @@ function SignupTabContent() {
   };
 
 
-  const CustomTextField = styled(TextField)({
-    '& .MuiOutlinedInput-root': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-  });
 
-  return (
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
+
+
+  const handleGenerateOTP = () => {
+    dispatch(generateOTP(phoneNumber)); // 使用生成的手机号码调用异步操作
+  };
+
+  const getCodeMsg = useSelector(state => state.authentication.message)
+
+  const errorMsg = useSelector(state => state.authentication.error)
+
+
+  useEffect(() => {
+    if (getCodeMsg) {
+      setOpen(true);
+
+      const timer = setTimeout(() => {
+        handleClose();
+        dispatch(clearMessage())
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [getCodeMsg]);
+
+  useEffect(() => {
+    if (errorMsg) {
+      setOpen(true);
+
+      const timer = setTimeout(() => {
+        handleClose();
+        dispatch(clearError())
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [errorMsg]);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+  const handleRegistration = () => {
+    dispatch(registerUser({
+      "firstName": nanoid(5),
+      "lastName": nanoid(5),
+      "email": email,
+      "password": password,
+      "phoneNumber": phoneNumber,
+      "code": verificationCode
+    })); // 传递 userData 参数
+  };
+
+return (
     <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
       <Box width={'72%'} display={"flex"} flexDirection={"column"} alignItems={"center"}>
         <Typography variant={'h6'} mb={3} alignSelf={"start"}>
@@ -41,6 +105,12 @@ function SignupTabContent() {
           label="Please enter you email"
           type="email"
           fullWidth={true}
+
+          value={email}
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+
         />
 
 
@@ -53,7 +123,10 @@ function SignupTabContent() {
           label="Create password between 6 - 20 characters"
           type="password"
           fullWidth={true}
-
+          value={password}
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
         />
 
         <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
@@ -64,6 +137,10 @@ function SignupTabContent() {
           label="Please re-enter your password"
           type="text"
           fullWidth={true}
+          value={confirmPassword}
+          onChange={(event) => {
+            setConfirmPassword(event.target.value);
+          }}
 
         />
 
@@ -75,7 +152,12 @@ function SignupTabContent() {
 
           label="Please enter your phone number"
           type="text"
+
           fullWidth={true}
+          value={phoneNumber}
+          onChange={(event) => {
+            setPhoneNumber(event.target.value);
+          }}
 
         />
 
@@ -86,13 +168,21 @@ function SignupTabContent() {
         </Typography>
         <Box display={"flex"} width={'100%'} mb={4}>
           <Box width={'80%'}>
-            <CustomTextField
+            <TextField
+                sx={{'& .MuiOutlinedInput-root': {
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
+                  }}}
               label="Please enter verification code"
-              type="password"
+              type="text"
               fullWidth={true}
+              value={verificationCode}
+              onChange={(event) => {
+                setVerificationCode(event.target.value);
+              }}
             /></Box>
           <Box width={'30%'}>
-            <Button variant="contained" sx={{height:"56px", borderTopLeftRadius:0, borderBottomLeftRadius:0}} >Get Code</Button>
+            <Button variant="contained" sx={{height:"56px", borderTopLeftRadius:0, borderBottomLeftRadius:0}} onClick={handleGenerateOTP}>Get Code</Button>
           </Box>
         </Box>
 
@@ -102,7 +192,15 @@ function SignupTabContent() {
          <Typography color={theme => theme.palette.primary.main} fontSize={'10px'}>I accept AI Roboto Edu’s Term of Use and Privacy Notice</Typography>
       </Box>
 
-        <Button variant="contained" sx={{width:"50%"}}>Sign Up</Button>
+        <Button variant="contained" sx={{width:"50%"}} onClick={handleRegistration}>Sign Up</Button>
+      </Box>
+      <Box mt={4}>
+        {open && (
+                <Alert severity={getCodeMsg ? 'success' : 'error'} onClose={handleClose}>
+                  {getCodeMsg ? getCodeMsg : errorMsg}
+                </Alert>
+
+        )}
       </Box>
 
 
@@ -114,11 +212,7 @@ function SignupTabContent() {
 }
 
 const LoginDialog = ({ open, onClose, initialTab, switchTab }) => {
-  // useEffect(() => {
-  //   setActiveTab(initialTab)
-  // }, [initialTab])
 
-  // console.log(activeTab)
 
   const handleTabChange = (event, newValue) => {
     console.log(newValue)

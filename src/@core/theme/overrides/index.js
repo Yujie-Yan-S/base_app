@@ -86,6 +86,7 @@ const Overrides = settings => {
     fabButton,
     breadcrumb,
     pagination,
+
     autocomplete,
     MuiTypography,
     MuiToggleButton
