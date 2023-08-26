@@ -9,12 +9,14 @@ const navigation = () => [
     title: 'Courses',
     path: '/courses',
     icon: 'mdi:email-outline',
+    auth: false,
 
   },
   {
     title: 'Programs',
     path: '/programs',
     icon: 'mdi:email-outline',
+    auth: false,
 
   },
 
