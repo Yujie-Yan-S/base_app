@@ -11,7 +11,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import {styled} from "@mui/material/styles";
 
-import {clearError, clearMessage, generateOTP, registerUser} from "../../store/features/authentication/authSlice";
+import {
+  changeErrorMsg,
+  clearError,
+  clearMessage,
+  generateOTP,
+  registerUser
+} from "../../store/features/authentication/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import Alert from "@mui/material/Alert";
 
@@ -37,6 +43,8 @@ function SignupTabContent() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
 
 
   const handleGenerateOTP = () => {
@@ -84,124 +92,176 @@ function SignupTabContent() {
 
 
   const handleRegistration = () => {
+    if(password!==confirmPassword){
+      dispatch(changeErrorMsg("Password not match"))
+
+return;
+    }
+
+
     dispatch(registerUser({
-      "firstName": nanoid(5),
-      "lastName": nanoid(5),
+      "firstName": firstName,
+      "lastName": lastName,
       "email": email,
       "password": password,
       "phoneNumber": phoneNumber,
       "code": verificationCode
     })); // 传递 userData 参数
+
+
   };
 
 return (
-    <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
-      <Box width={'72%'} display={"flex"} flexDirection={"column"} alignItems={"center"}>
-        <Typography variant={'h6'} mb={3} alignSelf={"start"}>
-          Your Email
-        </Typography>
-        <TextField
+      <Box display={"flex"} width={"900px"} flexDirection={"column"} justifyContent={"center"} alignItems={"spacebetween"}>
+      <Box width={'100%'} display={"flex"} flexDirection={"row"} alignItems={"center"} justifyContent={"space-evenly"}>
+        <Box width={"40%"} display={"flex"} flexDirection={"column"} alignItems={"center"} >
+          <Typography variant={'h6'} mb={3} alignSelf={"start"}>
+            Your Email
+          </Typography>
+          <TextField
 
-          label="Please enter you email"
-          type="email"
-          fullWidth={true}
+            label="Please enter you email"
+            type="email"
+            fullWidth={true}
 
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
 
-        />
-
-
-
-        <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
-          Password
-        </Typography>
-        <TextField
-
-          label="Create password between 6 - 20 characters"
-          type="password"
-          fullWidth={true}
-          value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        />
-
-        <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
-          Confirm Your Password
-        </Typography>
-        <TextField
-
-          label="Please re-enter your password"
-          type="text"
-          fullWidth={true}
-          value={confirmPassword}
-          onChange={(event) => {
-            setConfirmPassword(event.target.value);
-          }}
-
-        />
-
-
-        <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
-          Phone Number
-        </Typography>
-        <TextField
-
-          label="Please enter your phone number"
-          type="text"
-
-          fullWidth={true}
-          value={phoneNumber}
-          onChange={(event) => {
-            setPhoneNumber(event.target.value);
-          }}
-
-        />
+          />
 
 
 
-        <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
-          Verification Code
-        </Typography>
-        <Box display={"flex"} width={'100%'} mb={4}>
-          <Box width={'80%'}>
-            <TextField
+          <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
+            Password
+          </Typography>
+          <TextField
+
+            label="Create password between 6 - 20 characters"
+            type="password"
+            fullWidth={true}
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+
+          <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
+            Confirm Your Password
+          </Typography>
+          <TextField
+
+            label="Please re-enter your password"
+            type="password"
+            fullWidth={true}
+            value={confirmPassword}
+            onChange={(event) => {
+              setConfirmPassword(event.target.value);
+            }}
+
+          />
+
+
+
+
+          <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
+            Phone Number
+          </Typography>
+          <TextField
+
+            label="Please enter your phone number"
+            type="text"
+
+            fullWidth={true}
+            value={phoneNumber}
+            onChange={(event) => {
+              setPhoneNumber(event.target.value);
+            }}
+
+          />
+
+        </Box>
+        <Box width={"40%"} display={"flex"} flexDirection={"column"} alignItems={"center"} >
+          <Typography variant={'h6'} mb={3} alignSelf={"start"}>
+            First Name
+          </Typography>
+          <TextField
+
+            label="Please enter you first name"
+            type="text"
+            fullWidth={true}
+
+            value={firstName}
+            onChange={(event) => {
+              setFirstName(event.target.value);
+            }}
+
+          />
+
+          <Typography variant={'h6'} mb={3} mt={4} alignSelf={"start"}>
+            Last Name
+          </Typography>
+          <TextField
+
+            label="Please enter you last name"
+            type="text"
+            fullWidth={true}
+
+            value={lastName}
+            onChange={(event) => {
+              setLastName(event.target.value);
+            }}
+
+          />
+
+
+
+
+          <Typography variant={'h6'} mt={4} mb={3} alignSelf={"start"}>
+            Verification Code
+          </Typography>
+          <Box display={"flex"} width={'100%'} mb={4}>
+            <Box width={'80%'}>
+              <TextField
                 sx={{'& .MuiOutlinedInput-root': {
                     borderTopRightRadius: 0,
                     borderBottomRightRadius: 0,
                   }}}
-              label="Please enter verification code"
-              type="text"
-              fullWidth={true}
-              value={verificationCode}
-              onChange={(event) => {
-                setVerificationCode(event.target.value);
-              }}
-            /></Box>
-          <Box width={'30%'}>
-            <Button variant="contained" sx={{height:"56px", borderTopLeftRadius:0, borderBottomLeftRadius:0}} onClick={handleGenerateOTP}>Get Code</Button>
+                label="Please enter verification code"
+                type="text"
+                fullWidth={true}
+                value={verificationCode}
+                onChange={(event) => {
+                  setVerificationCode(event.target.value);
+                }}
+              /></Box>
+            <Box width={'30%'}>
+              <Button variant="contained" sx={{height:"56px", borderTopLeftRadius:0, borderBottomLeftRadius:0}} onClick={handleGenerateOTP}>Get Code</Button>
+            </Box>
           </Box>
+
+
+          <Box display={"flex"} mt={4} mb={4}>
+            <Checkbox  checked={checked}  onChange={handleChange} sx={{p:0}}/>
+            <Typography color={theme => theme.palette.primary.main} fontSize={'10px'}>I accept AI Roboto Edu’s Term of Use and Privacy Notice</Typography>
+          </Box>
+
+          <Button variant="contained" sx={{width:"50%"}} onClick={handleRegistration}>Sign Up</Button>
+        </Box>
         </Box>
 
 
-       <Box display={"flex"} mb={4}>
-         <Checkbox  checked={checked}  onChange={handleChange} sx={{p:0}}/>
-         <Typography color={theme => theme.palette.primary.main} fontSize={'10px'}>I accept AI Roboto Edu’s Term of Use and Privacy Notice</Typography>
-      </Box>
 
-        <Button variant="contained" sx={{width:"50%"}} onClick={handleRegistration}>Sign Up</Button>
-      </Box>
-      <Box mt={4}>
-        {open && (
-                <Alert severity={getCodeMsg ? 'success' : 'error'} onClose={handleClose}>
-                  {getCodeMsg ? getCodeMsg : errorMsg}
-                </Alert>
 
-        )}
-      </Box>
+        <Box mt={4}>
+          {open && (
+            <Alert severity={getCodeMsg ? 'success' : 'error'} onClose={handleClose}>
+              {getCodeMsg ? getCodeMsg : errorMsg}
+            </Alert>
+
+          )}
+        </Box>
 
 
 
@@ -221,7 +281,7 @@ const LoginDialog = ({ open, onClose, initialTab, switchTab }) => {
   }
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth={true} maxWidth={'xs'}>
+    <Dialog open={open} onClose={onClose} fullWidth={false} maxWidth={'md'}>
       <Tabs value={initialTab} onChange={handleTabChange} sx={{ display: 'flex' }}>
         <Tab label='Log In' />
         <Tab label='Sign Up' />
