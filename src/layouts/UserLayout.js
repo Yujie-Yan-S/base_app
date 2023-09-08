@@ -4,7 +4,6 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 // !Do not remove this Layout import
 import Layout from 'src/@core/layouts/Layout'
 
-
 // ** Navigation Imports
 import VerticalNavItems from 'src/navigation/vertical'
 import HorizontalNavItems from 'src/navigation/horizontal'
@@ -18,20 +17,20 @@ import VerticalAppBarContent from './components/vertical/AppBarContent'
 import HorizontalAppBarContent from './components/horizontal/AppBarContent'
 
 // ** Hook Import
-import {useSettings} from 'src/@core/hooks/useSettings'
+import { useSettings } from 'src/@core/hooks/useSettings'
 
 // ** MUI import
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import {red} from "@mui/material/colors";
+import { red } from '@mui/material/colors'
 import { useRouter } from 'next/router'
 import OverrideFooter from './override/OverrideFooter'
 
-const UserLayout = ({children, contentHeightFixed}) => {
-  const router = useRouter();
+const UserLayout = ({ children, contentHeightFixed }) => {
+  const router = useRouter()
 
   // ** Hooks
-  const {settings, saveSettings} = useSettings()
+  const { settings, saveSettings } = useSettings()
 
   // ** Vars for server side navigation
   // const { menuItems: verticalMenuItems } = ServerSideVerticalNavItems()
@@ -62,28 +61,34 @@ const UserLayout = ({children, contentHeightFixed}) => {
   //   )
   // }
 
-  const handleClick = ()=>{
+  const handleClick = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
 
     router.push('/home')
   }
 
   const AppBrand = () => {
-
     return (
-      <Box onClick={handleClick} sx={{display: 'flex', alignItems: 'center',
-        '& .shouldHover:hover':{
-          opacity: 0.8,
-          cursor: 'pointer'
-        }
-      }}>
+      <Box
+        onClick={handleClick}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          '& .shouldHover:hover': {
+            opacity: 0.8,
+            cursor: 'pointer'
+          }
+        }}
+      >
         <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
 
-
-        <Typography sx={{fontSize: 20, pl:4, mr: 10, display: 'flex',justifyContent:'center', alignItems: 'center'}} noWrap fontWeight="bold">
-          <text className={'shouldHover'}>AI ROBOTO EDU</text>
+        <Typography
+          sx={{ fontSize: 20, pl: 4, mr: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          noWrap
+          fontWeight='bold'
+        >
+          <span className={'shouldHover'}>AI ROBOTO EDU</span>
         </Typography>
-
       </Box>
     )
   }
@@ -129,14 +134,12 @@ const UserLayout = ({children, contentHeightFixed}) => {
           //   content: () => <HorizontalAppBarContent settings={settings} saveSettings={saveSettings} />
           // }
           appBar: {
-            content: () => (
-              <HorizontalAppBarContent settings={settings} horizontalNavItems={HorizontalNavItems()}/>
-            ),
-            branding: () => <AppBrand/>,
-            componentProps:{
-              sx:{
-                maxWidth:1165,
-                height:'7.2vh'
+            content: () => <HorizontalAppBarContent settings={settings} horizontalNavItems={HorizontalNavItems()} />,
+            branding: () => <AppBrand />,
+            componentProps: {
+              sx: {
+                maxWidth: 1165,
+                height: '7.2vh'
               }
             }
           }
@@ -147,7 +150,6 @@ const UserLayout = ({children, contentHeightFixed}) => {
       }}
     >
       {children}
-
     </Layout>
   )
 }

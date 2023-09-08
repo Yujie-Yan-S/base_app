@@ -17,7 +17,7 @@ export default function CustomBreadcrumb() {
       </Typography>
     </Link>,
 
-    <Typography variant='h7' color={'white!important'}>
+    <Typography key='2' variant='h7' color={'white!important'}>
       Lingke Education System
     </Typography>
   ]

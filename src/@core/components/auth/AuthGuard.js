@@ -11,6 +11,8 @@ const AuthGuard = props => {
   const { children, fallback } = props
   const auth = useAuth()
   const router = useRouter()
+  console.log(auth.loading)
+
   useEffect(
     () => {
       if (!router.isReady) {
@@ -19,21 +21,25 @@ const AuthGuard = props => {
       if (auth.user === null && !window.localStorage.getItem('userData')) {
         if (router.asPath !== '/') {
           router.replace({
-            pathname: '/login',
+            pathname: '/home',
             query: { returnUrl: router.asPath }
           })
         } else {
-          router.replace('/login')
+          router.replace('/home')
         }
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [router.route]
   )
+
   if (auth.loading || auth.user === null) {
+    // console.log('auth guard loading')
+
     return fallback
   }
 
+  console.log('auth guard pass')
   return <>{children}</>
 }
 

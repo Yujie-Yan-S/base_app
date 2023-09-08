@@ -39,7 +39,7 @@ function a11yProps(index) {
   }
 }
 
-export default function BasicTabs({ about, syllabus }) {
+export default function CourseContentTab({ about, syllabus, grades }) {
   const [value, setValue] = useState(0)
 
   const handleChange = (event, newValue) => {
@@ -52,12 +52,42 @@ export default function BasicTabs({ about, syllabus }) {
         <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
           <Tab label='About' {...a11yProps(0)} />
           <Tab label='Syllabus' {...a11yProps(1)} />
+          <Tab label='Grades' {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
         <Typography variant='body' color={'customColors.darkText'}>
           {about}
         </Typography>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        {syllabus.map((item, index) => (
+          <Box key={index} height={'85px'}>
+            <Divider sx={{ mb: 1, background: theme => theme.palette.primary.main }} />
+            <Box display={'flex'}>
+              <Typography
+                width={'23.4%'}
+                sx={{ color: 'black' }}
+                variant={'h5'}
+                fontWeight={'650'}
+                display={'flex'}
+                justifyContent={'center'}
+                alignItems={'center'}
+              >
+                lesson {index + 1}
+              </Typography>
+              <Typography
+                width={'76.6%'}
+                sx={{ color: 'black' }}
+                variant={'body'}
+                display={'flex'}
+                alignItems={'center'}
+              >
+                {item}
+              </Typography>
+            </Box>
+          </Box>
+        ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         {syllabus.map((item, index) => (

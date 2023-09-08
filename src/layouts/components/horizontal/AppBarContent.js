@@ -25,12 +25,22 @@ import UserDropdown from 'src/@core/layouts/components/shared-components/UserDro
 import Typography from '@mui/material/Typography'
 import { useRouter } from 'next/router'
 import CustomLogin from '../CustomLogin'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const AppBarContent = props => {
   const [dialogOpen, setDialogOpen] = useState(false)
 
   const [initialTab, setInitialTab] = useState(0)
+
+  const router = useRouter()
+  // console.log(router)
+  // console.log(router.isReady)
+
+  useEffect(() => {
+    if (router.isReady && router.query.returnUrl) {
+      setDialogOpen(true)
+    }
+  }, [router.isReady])
 
   const handleDialogClose = () => {
     setDialogOpen(false)
