@@ -15,14 +15,18 @@ const Courses = () => {
 
   const router = useRouter()
   const queryParams = router.query
-  const page = parseInt(queryParams.pageNum, 10)
+  const page = parseInt(queryParams.pageNum, 10) ? parseInt(queryParams.pageNum, 10) : 0
+  console.log(page)
 
   useEffect(() => {
     if (router.isReady) {
       const currentQuery = querystring.stringify(queryParams)
+        ? querystring.stringify(queryParams)
+        : 'pageNum=0&pageSize=12'
+      // console.log(currentQuery)
       dispatch(fetchCourseBySearch(currentQuery))
     }
-  }, [router.isReady])
+  }, [router])
 
   if (status === 'loading') {
     return (
