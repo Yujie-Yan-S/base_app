@@ -4,6 +4,7 @@ import Avatar from '@mui/material/Avatar'
 import Divider from '@mui/material/Divider'
 import React from 'react'
 import CustomBreadcrumb from './component/Breadcrumb'
+
 function CourseDetails() {
   const courseData = {
     title: 'Lingke',
@@ -138,5 +139,6 @@ function CourseDetails() {
   )
 }
 
-// CourseDetails.authGuard = false
+CourseDetails.authGuard = false
+
 export default CourseDetails

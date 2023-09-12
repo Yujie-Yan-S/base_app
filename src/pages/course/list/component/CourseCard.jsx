@@ -1,6 +1,6 @@
-import { Card, CardContent, CardActionArea, CardMedia, Typography, Box } from '@mui/material'
+import {Card, CardContent, CardActionArea, CardMedia, Typography, Box, Chip} from '@mui/material'
 
-const CourseCard = ({ img, title, tags }) => {
+const CourseCard = ({click, img, title, tags }) => {
   const tagList = tags?.map((item, index) => (
     <Chip
       key={index}
@@ -11,8 +11,9 @@ const CourseCard = ({ img, title, tags }) => {
       sx={{ margin: '0.2rem', fontSize: '0.7rem', padding: 0 }}
     />
   ))
-  return (
-    <Card sx={{ aspectRatio: '1/1' }}>
+
+return (
+    <Card sx={{ aspectRatio: '1/1' }} onClick={click}>
       <CardActionArea>
         <CardMedia component='img' image={img} alt='Card Image' />
         <CardContent sx={{ padding: 2 }}>

@@ -60,7 +60,37 @@ export default function CourseContentTab({ about, syllabus, grades }) {
           {about}
         </Typography>
       </CustomTabPanel>
+      {/*<CustomTabPanel value={value} index={1}>*/}
+      {/*  {syllabus.map((item, index) => (*/}
+      {/*    <Box key={index} height={'85px'}>*/}
+      {/*      <Divider sx={{ mb: 1, background: theme => theme.palette.primary.main }} />*/}
+      {/*      <Box display={'flex'}>*/}
+      {/*        <Typography*/}
+      {/*          width={'23.4%'}*/}
+      {/*          sx={{ color: 'black' }}*/}
+      {/*          variant={'h5'}*/}
+      {/*          fontWeight={'650'}*/}
+      {/*          display={'flex'}*/}
+      {/*          justifyContent={'center'}*/}
+      {/*          alignItems={'center'}*/}
+      {/*        >*/}
+      {/*          lesson {index + 1}*/}
+      {/*        </Typography>*/}
+      {/*        <Typography*/}
+      {/*          width={'76.6%'}*/}
+      {/*          sx={{ color: 'black' }}*/}
+      {/*          variant={'body'}*/}
+      {/*          display={'flex'}*/}
+      {/*          alignItems={'center'}*/}
+      {/*        >*/}
+      {/*          {item}*/}
+      {/*        </Typography>*/}
+      {/*      </Box>*/}
+      {/*    </Box>*/}
+      {/*  ))}*/}
+      {/*</CustomTabPanel>*/}
       <CustomTabPanel value={value} index={1}>
+
         {syllabus.map((item, index) => (
           <Box key={index} height={'85px'}>
             <Divider sx={{ mb: 1, background: theme => theme.palette.primary.main }} />
@@ -74,7 +104,7 @@ export default function CourseContentTab({ about, syllabus, grades }) {
                 justifyContent={'center'}
                 alignItems={'center'}
               >
-                lesson {index + 1}
+                {item.name}
               </Typography>
               <Typography
                 width={'76.6%'}
@@ -83,36 +113,7 @@ export default function CourseContentTab({ about, syllabus, grades }) {
                 display={'flex'}
                 alignItems={'center'}
               >
-                {item}
-              </Typography>
-            </Box>
-          </Box>
-        ))}
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        {syllabus.map((item, index) => (
-          <Box key={index} height={'85px'}>
-            <Divider sx={{ mb: 1, background: theme => theme.palette.primary.main }} />
-            <Box display={'flex'}>
-              <Typography
-                width={'23.4%'}
-                sx={{ color: 'black' }}
-                variant={'h5'}
-                fontWeight={'650'}
-                display={'flex'}
-                justifyContent={'center'}
-                alignItems={'center'}
-              >
-                lesson {index + 1}
-              </Typography>
-              <Typography
-                width={'76.6%'}
-                sx={{ color: 'black' }}
-                variant={'body'}
-                display={'flex'}
-                alignItems={'center'}
-              >
-                {item}
+                {item.description}
               </Typography>
             </Box>
           </Box>

@@ -11,6 +11,7 @@ import pagination from 'src/configs/pagination'
 
 const Courses = () => {
   const { status, totalPage, courseListFromSearch } = useSelector(state => state.courseBySearch)
+
   const dispatch = useDispatch()
 
   const router = useRouter()
@@ -18,11 +19,20 @@ const Courses = () => {
   const page = parseInt(queryParams.pageNum, 10) ? parseInt(queryParams.pageNum, 10) : 0
   console.log(page)
 
+  const handleCardClick=(id)=>{
+    router.push({
+      pathname: '/course/user',
+      query: { userId: id },
+    })
+  }
+
+
   useEffect(() => {
     if (router.isReady) {
       const currentQuery = querystring.stringify(queryParams)
         ? querystring.stringify(queryParams)
         : 'pageNum=0&pageSize=12'
+
       // console.log(currentQuery)
       dispatch(fetchCourseBySearch(currentQuery))
     }
@@ -42,7 +52,7 @@ const Courses = () => {
   const courseList = courseListFromSearch.map((item, index) => {
     return (
       <Grid item key={index} md={3}>
-        <CourseCard key={index} img={item.cover} title={item.name} tags={item.tag} />
+        <CourseCard click={()=>handleCardClick(item.id)} key={index} img={item.cover} title={item.name} tags={item.tag} />
       </Grid>
     )
   })
