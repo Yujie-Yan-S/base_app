@@ -65,13 +65,17 @@ const AuthProvider = ({ children }) => {
     axios
       .post(authConfig.loginEndpoint, params)
       .then(async response => {
-        params.rememberMe
-          ? window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.accessToken)
-          : null
-        const returnUrl = router.query.returnUrl
+        console.log('res data is', response.data)
+        console.log('if remember', params['auto-log-in'])
+
+        if (params['auto-log-in']) {
+          window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.data.token)
+          window.localStorage.setItem('userData', JSON.stringify(response.data.data.user))
+        }
         setUser({ ...response.data.userData })
-        params.rememberMe ? window.localStorage.setItem('userData', JSON.stringify(response.data.userData)) : null
-        const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
+        const returnUrl = router.query.returnUrl
+        const redirectURL = returnUrl && returnUrl !== '/home' ? returnUrl : '/home'
+
         router.replace(redirectURL)
       })
       .catch(err => {

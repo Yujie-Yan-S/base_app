@@ -32,15 +32,28 @@ import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
 import {log} from "next/dist/server/typescript/utils";
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import { useEffect } from 'react'
 
 const AppBarContent = props => {
 
-  const router = useRouter()
+  const { logout } = useAuth()
+
   const auth = useAuth()
 
   const [dialogOpen, setDialogOpen] = useState(false)
 
   const [initialTab, setInitialTab] = useState(0)
+
+  const router = useRouter()
+
+  // console.log(router)
+  // console.log(router.isReady)
+
+  useEffect(() => {
+    if (router.isReady && router.query.returnUrl) {
+      setDialogOpen(true)
+    }
+  }, [router.isReady])
 
   const handleDialogClose = () => {
     setDialogOpen(false)
@@ -66,6 +79,13 @@ const AppBarContent = props => {
     setAnchorEl(null);
     setIshover(false);
   };
+
+  const handleLogOut = ()=>{
+    logout()
+    setAnchorEl(null);
+    setIshover(false);
+    router.push('/home')
+  }
 
   const [ishover, setIshover] = useState(false)
 
@@ -154,7 +174,7 @@ const AppBarContent = props => {
               <MenuItem onClick={handleClickMyProgram}><Typography fontWeight={"500"}>My Programs</Typography></MenuItem>
             <MenuItem onClick={handleClose}><Typography fontWeight={"500"}>Account</Typography></MenuItem>
             <MenuItem onClick={handleClose}><Typography fontWeight={"500"}>Accomplishments</Typography></MenuItem>
-            <MenuItem onClick={handleClose}><Typography fontWeight={"500"}>Log Out</Typography></MenuItem>
+            <MenuItem onClick={handleLogOut}><Typography fontWeight={"500"}>Log Out</Typography></MenuItem>
           </Menu>
         </Box>
       )

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const generateOTP = createAsyncThunk('auth/generateOTP', async (phoneNumber) => {
-  const response = await axios.get(`http://api.airobotoedu.com/api/phoneNumber/generateOTP?phoneNumber=${phoneNumber}`);
+export const generateOTP = createAsyncThunk('auth/generateOTP', async (payload) => {
+  const response = await axios.post(`http://api.airobotoedu.com/api/phoneNumber/generateOTP/signup`, payload);
 
   return response.data;
 });
@@ -42,7 +42,9 @@ const authSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(generateOTP.fulfilled, (state, action) => {
-        state.message = action.payload;
+        console.log(action.payload)
+
+        state.message = action.payload.msg;
       })
       .addCase(generateOTP.rejected, (state, action) => {
         state.status = 'failed';

@@ -42,19 +42,19 @@ const Home = () => {
   }, [dispatch])
 
   if (status === 'loading') {
-    return <box>Loading...</box>
+    return <Box>Loading...</Box>
   }
 
   if (status === 'failed') {
-    return <box>Error: {error}</box>
+    return <Box>Error: {error}</Box>
   }
 
   if (status1 === 'loading') {
-    return <box>Loading...</box>
+    return <Box>Loading...</Box>
   }
 
   if (status1 === 'failed') {
-    return <box>Error: {error1}</box>
+    return <Box>Error: {error1}</Box>
   }
 
   const MyComponent = cardData.map((item, index) => {
@@ -66,9 +66,9 @@ const Home = () => {
   })
 
   return (
-    <Box container display={'flex'} flexDirection={'column'}>
+    <Box display={'flex'} flexDirection={'column'}>
       {/*carousel*/}
-      <Box square sx={{ height: '376px' }}>
+      <Box sx={{ height: '376px' }}>
         <Slider {...settings}>
           {urls.map((item, index) => {
             return <Img src={item} alt={'loading'} key={index} />

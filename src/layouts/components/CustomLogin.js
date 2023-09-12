@@ -2,13 +2,13 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } 
 import Button from '@mui/material/Button'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Divider from '@mui/material/Divider'
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import { useEffect } from 'react'
+
+
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+
 import {styled} from "@mui/material/styles";
 
 import {
@@ -26,10 +26,13 @@ import { nanoid } from 'nanoid';
 function LoginTabContent() {
   return 123
 }
+import LoginForm from './horizontal/LoginForm'
+import { TextField, Box, Typography, Checkbox } from '@mui/material'
+
 
 function SignupTabContent() {
   const [open, setOpen] = useState(false);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
 
   const handleChange = (event) => {
@@ -48,7 +51,14 @@ function SignupTabContent() {
 
 
   const handleGenerateOTP = () => {
-    dispatch(generateOTP(phoneNumber)); // 使用生成的手机号码调用异步操作
+    dispatch(generateOTP({
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": email,
+      "password": password,
+      "phoneNumber": phoneNumber
+
+    })); // 使用生成的手机号码调用异步操作
   };
 
   const getCodeMsg = useSelector(state => state.authentication.message)
@@ -269,14 +279,71 @@ return (
 
     </Box>
   )
+
+
+
+
+  const CustomTextField = styled(TextField)({
+    '& .MuiOutlinedInput-root': {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0
+    }
+  })
+
+  return (
+    <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
+      <Box width={'72%'} display={'flex'} flexDirection={'column'} alignItems={'center'}>
+        <Typography variant={'h6'} mb={3} alignSelf={'start'}>
+          Your Email
+        </Typography>
+        <TextField label='Please enter you email' type='email' fullWidth={true} />
+
+        <Typography variant={'h6'} mt={4} mb={3} alignSelf={'start'}>
+          Password
+        </Typography>
+        <TextField label='Create password between 6 - 20 characters' type='password' fullWidth={true} />
+
+        <Typography variant={'h6'} mt={4} mb={3} alignSelf={'start'}>
+          Confirm Your Password
+        </Typography>
+        <TextField label='Please re-enter your password' type='text' fullWidth={true} />
+
+        <Typography variant={'h6'} mt={4} mb={3} alignSelf={'start'}>
+          Phone Number
+        </Typography>
+        <TextField label='Please enter your phone number' type='text' fullWidth={true} />
+
+        <Typography variant={'h6'} mt={4} mb={3} alignSelf={'start'}>
+          Verification Code
+        </Typography>
+        <Box display={'flex'} width={'100%'} mb={4}>
+          <Box width={'80%'}>
+            <CustomTextField label='Please enter verification code' type='password' fullWidth={true} />
+          </Box>
+          <Box width={'30%'}>
+            <Button variant='contained' sx={{ height: '56px', borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}>
+              Get Code
+            </Button>
+          </Box>
+        </Box>
+
+        <Box display={'flex'} mb={4}>
+          <Checkbox checked={checked} onChange={handleChange} sx={{ p: 0 }} />
+          <Typography color={theme => theme.palette.primary.main} fontSize={'10px'}>
+            I accept AI Roboto Edu’s Term of Use and Privacy Notice
+          </Typography>
+        </Box>
+
+        <Button variant='contained' sx={{ width: '50%' }}>
+          Sign Up
+        </Button>
+      </Box>
+    </Box>
+  )
 }
 
 const LoginDialog = ({ open, onClose, initialTab, switchTab }) => {
-
-
   const handleTabChange = (event, newValue) => {
-    console.log(newValue)
-
     switchTab(newValue)
   }
 
@@ -289,7 +356,7 @@ const LoginDialog = ({ open, onClose, initialTab, switchTab }) => {
       <Divider sx={{ backgroundColor: theme => theme.palette.primary.main }} />
 
       <DialogContent>
-        {initialTab === 0 && <LoginTabContent />} {/* Render Login content when activeTab is 0 */}
+        {initialTab === 0 && <LoginForm />} {/* Render Login content when activeTab is 0 */}
         {initialTab === 1 && <SignupTabContent />} {/* Render Signup content when activeTab is 1 */}
       </DialogContent>
     </Dialog>

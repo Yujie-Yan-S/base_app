@@ -3,14 +3,15 @@ const navigation = () => [
     title: 'Home',
     path: '/home',
     icon: 'mdi:home-outline',
-    auth: false,
+    auth: false
   },
   {
     title: 'Courses',
-    path: '/courses',
-    icon: 'mdi:email-outline',
+
     auth: false,
 
+    path: '/course/list/?pageNum=0&pageSize=12',
+    icon: 'mdi:email-outline'
   },
   {
     title: 'Programs',
