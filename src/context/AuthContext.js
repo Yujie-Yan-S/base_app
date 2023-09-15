@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
       if (storedToken) {
         setLoading(true)
         console.log("we have token, let's do auth")
+
         await axios
           .get(authConfig.meEndpoint, {
             headers: {
@@ -41,9 +42,9 @@ const AuthProvider = ({ children }) => {
             }
           })
           .then(async response => {
-            console.log(response)
+            console.log(...response.data.data.user)
             setLoading(false)
-            setUser({ ...response.data.userData })
+            setUser({ ...response.data.data.user })
           })
           .catch(() => {
             localStorage.removeItem('userData')
