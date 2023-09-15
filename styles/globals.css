@@ -17,11 +17,16 @@ body {
   background: white;
 }
 
-/*width for main content*/
-.css-1q5gtkw {
-  max-width: 1165px !important;
-  min-height: 78vh;
+/*padding for main layout*/
+.css-1u968xd {
+  padding: 0px !important;
 }
+
+/*width for main content*/
+/*.css-1q5gtkw {*/
+/*  max-width: 1165px !important;*/
+/*  min-height: 78vh;*/
+/*}*/
 /*Footer backgournd*/
 .css-1s71n78 {
   width: 100%;
@@ -29,7 +34,7 @@ body {
 }
 @media screen and (min-width: 1200px) {
   .css-1s71n78 {
-    width: 1165px;
+    /*width: 1165px;*/
     background-color: #004aad;
   }
 }

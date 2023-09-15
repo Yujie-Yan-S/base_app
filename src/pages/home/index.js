@@ -25,7 +25,8 @@ const Home = () => {
   }
 
   const Img = styled('img')({
-    height: '377px',
+    width:'100%',
+    height: '50vh',
     objectFit: 'cover'
   })
 
@@ -59,7 +60,7 @@ const Home = () => {
 
   const MyComponent = cardData.map((item, index) => {
     return (
-      <Grid key={index} item xs={4} sm={4} lg={3} display='flex' justifyContent='center' alignItems='center'>
+      <Grid key={index} item xs={6} sm={4} lg={3} display='flex' justifyContent='center' alignItems='center'>
         <HomePageCard text={item.description} image={item.cover} />
       </Grid>
     )
@@ -68,7 +69,7 @@ const Home = () => {
   return (
     <Box display={'flex'} flexDirection={'column'}>
       {/*carousel*/}
-      <Box sx={{ height: '376px' }}>
+      <Box sx={{ height: 'auto' }}>
         <Slider {...settings}>
           {urls.map((item, index) => {
             return <Img src={item} alt={'loading'} key={index} />

@@ -67,31 +67,67 @@ const UserLayout = ({ children, contentHeightFixed }) => {
     router.push('/home')
   }
 
-  const AppBrand = () => {
-    return (
-      <Box
-        onClick={handleClick}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          '& .shouldHover:hover': {
-            opacity: 0.8,
-            cursor: 'pointer'
-          }
-        }}
-      >
-        <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
+  // const AppBrand = () => {
+  //   return (
+  //     <Box
+  //       onClick={handleClick}
+  //       sx={{
+  //         display: 'flex',
+  //         alignItems: 'center',
+  //         '& .shouldHover:hover': {
+  //           opacity: 0.8,
+  //           cursor: 'pointer'
+  //         }
+  //       }}
+  //     >
+  //       <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
+  //
+  //       <Typography
+  //         sx={{ fontSize: 20, pl: 4, mr: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+  //         noWrap
+  //         fontWeight='bold'
+  //       >
+  //         <span className={'shouldHover'}>AI ROBOTO EDU</span>
+  //       </Typography>
+  //     </Box>
+  //   )
+  // }
 
-        <Typography
-          sx={{ fontSize: 20, pl: 4, mr: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-          noWrap
-          fontWeight='bold'
-        >
-          <span className={'shouldHover'}>AI ROBOTO EDU</span>
-        </Typography>
-      </Box>
-    )
-  }
+    const AppBrand = () => {
+        const isWideScreen = window.innerWidth >= 640;
+
+        if (!isWideScreen) {
+            return null; // Don't render the component on screens less than 640px wide
+        }
+
+        const handleClick = () => {
+            // Add your click handling logic here
+        };
+
+        return (
+            <Box
+                onClick={handleClick}
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    '& .shouldHover:hover': {
+                        opacity: 0.8,
+                        cursor: 'pointer',
+                    },
+                }}
+            >
+                <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
+
+                <Typography
+                    sx={{ fontSize: 20, pl: 4, mr: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                    noWrap
+                    fontWeight='bold'
+                >
+                    <span className={'shouldHover'}>AI ROBOTO EDU</span>
+                </Typography>
+            </Box>
+        );
+    };
 
   return (
     <Layout
@@ -138,7 +174,7 @@ const UserLayout = ({ children, contentHeightFixed }) => {
             branding: () => <AppBrand />,
             componentProps: {
               sx: {
-                maxWidth: 1165,
+                // maxWidth: 1165,
                 height: '7.2vh'
               }
             }
