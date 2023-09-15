@@ -90,6 +90,7 @@ const AppBarContent = props => {
   const [ishover, setIshover] = useState(false)
 
   const user = auth.user
+  console.log("this is user info ",user)
 
   const handleClick = (event)=>{
 
@@ -105,6 +106,7 @@ const AppBarContent = props => {
     router.push('/my-program')
   }
 
+  console.log("user is ",user)
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -141,7 +143,10 @@ const AppBarContent = props => {
 
 
 
-        >{user.fullName.charAt(0)} </Avatar>
+        >{
+
+
+          user.user.firstName.charAt(0)} </Avatar>
           <KeyboardArrowUpOutlinedIcon
             sx={{
               ml: 1,
