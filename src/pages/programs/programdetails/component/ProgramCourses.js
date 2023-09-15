@@ -70,7 +70,7 @@ const ProgramCourses = ({ data }) => {
               data.map((item, i) => {
                 return (
                   <Box key={i} pb={3} display={'flex !important'} justifyContent={'center'}>
-                    <HomePageCard text={item.description} image={item.cover} />
+                    <HomePageCard text={item.description} image={item.cover} width={'250px'} />
                   </Box>
                 )
               })}

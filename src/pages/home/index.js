@@ -61,7 +61,7 @@ const Home = () => {
   const MyComponent = cardData.map((item, index) => {
     return (
       <Grid key={index} item xs={6} sm={4} lg={3} display='flex' justifyContent='center' alignItems='center'>
-        <HomePageCard text={item.description} image={item.cover} />
+        <HomePageCard text={item.description} image={item.cover} width={'80%'} />
       </Grid>
     )
   })
