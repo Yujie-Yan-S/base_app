@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Button from '@mui/material/Button'
+import auth from 'src/configs/auth'
 
-const MyButton = ({ resetTime }) => {
+const MyButton = ({ handleVerificationClick }) => {
   const [isDisabled, setIsDisabled] = useState(false)
   const [countDown, setCountDown] = useState(0)
-  console.log('render')
 
   useEffect(() => {
-    console.log(countDown, 'countDown')
     if (countDown === 0) {
       setIsDisabled(false)
       return
@@ -20,16 +19,22 @@ const MyButton = ({ resetTime }) => {
     }
   }, [countDown])
 
-  const handleClick = () => {
-    if (!isDisabled) {
+  const handleClick = async () => {
+    if ((await handleVerificationClick()) && !isDisabled) {
       setIsDisabled(true)
-      setCountDown(19)
+      setCountDown(auth.getCodeDisableTime)
     }
   }
 
   return (
-    <Button variant='contained' color='primary' disabled={isDisabled} onClick={handleClick}>
-      {isDisabled ? `(${countDown})s to resend` : `Get code`}
+    <Button
+      variant='contained'
+      color='primary'
+      disabled={isDisabled}
+      onClick={handleClick}
+      sx={{ height: '56px', borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+    >
+      {isDisabled ? `(${countDown})s resend` : `Get code`}
     </Button>
   )
 }
