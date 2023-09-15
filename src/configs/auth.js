@@ -1,5 +1,5 @@
 export default {
-  meEndpoint: '/auth/me',
+  meEndpoint: 'http://api.airobotoedu.com/api/get_information_by_token',
   loginEndpoint: 'http://api.airobotoedu.com/api/login',
   registerEndpoint: '/jwt/register',
   storageTokenKeyName: 'accessToken',

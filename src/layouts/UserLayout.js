@@ -25,6 +25,7 @@ import Typography from '@mui/material/Typography'
 import { red } from '@mui/material/colors'
 import { useRouter } from 'next/router'
 import OverrideFooter from './override/OverrideFooter'
+import {useEffect, useState} from "react";
 
 const UserLayout = ({ children, contentHeightFixed }) => {
   const router = useRouter()
@@ -94,15 +95,32 @@ const UserLayout = ({ children, contentHeightFixed }) => {
   // }
 
     const AppBrand = () => {
-        const isWideScreen = window.innerWidth >= 640;
-
-        if (!isWideScreen) {
-            return null; // Don't render the component on screens less than 640px wide
-        }
+        const [isWideScreen, setIsWideScreen] = useState(false);
 
         const handleClick = () => {
             // Add your click handling logic here
         };
+
+        useEffect(() => {
+            // Check if window is defined (client-side)
+            if (typeof window !== 'undefined') {
+                setIsWideScreen(window.innerWidth >= 810);
+
+                const handleResize = () => {
+                    setIsWideScreen(window.innerWidth >= 810);
+                };
+
+                window.addEventListener('resize', handleResize);
+
+                return () => {
+                    window.removeEventListener('resize', handleResize);
+                };
+            }
+        }, []); // Empty dependency array to run this effect only once on mount
+
+        if (!isWideScreen) {
+            return null; // Don't render the component on screens less than 640px wide
+        }
 
         return (
             <Box
@@ -129,7 +147,9 @@ const UserLayout = ({ children, contentHeightFixed }) => {
         );
     };
 
-  return (
+
+
+    return (
     <Layout
       hidden={hidden}
       settings={settings}

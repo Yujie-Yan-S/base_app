@@ -21,8 +21,12 @@ const Courses = () => {
 
   const handleCardClick = id => {
     router.push({
+<<<<<<< HEAD
       pathname: '/course/user',
       query: { userId: id }
+=======
+      pathname: `/course/`+id
+>>>>>>> refs/remotes/origin/master
     })
   }
 

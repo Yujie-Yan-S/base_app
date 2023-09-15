@@ -88,7 +88,7 @@ const AppBarContent = props => {
   const [ishover, setIshover] = useState(false)
 
   const user = auth.user
-  console.log('this is user info ', user)
+  console.log('Here is user context ', user)
 
   const handleClick = event => {
     setIshover(true)
@@ -99,8 +99,6 @@ const AppBarContent = props => {
   const handleClickMyProgram = () => {
     router.push('/my-program')
   }
-
-  console.log('user is ', user)
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

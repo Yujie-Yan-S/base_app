@@ -42,9 +42,11 @@ const AuthProvider = ({ children }) => {
             }
           })
           .then(async response => {
-            console.log(...response.data.data.user)
+            console.log('res from token is', response.data.data.user)
+            console.log('user is', response.data.data.user.firstName)
+
             setLoading(false)
-            setUser({ ...response.data.data.user })
+            setUser({ user: response.data.data.user })
           })
           .catch(() => {
             localStorage.removeItem('userData')

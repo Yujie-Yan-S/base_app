@@ -8,9 +8,9 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 
-export default function HomePageCard({ image, text }) {
+export default function HomePageCard({ image, text, width }) {
   return (
-      <Paper elevation={5} sx={{width:'70%', height:'100%'}}>
+      <Paper elevation={5} sx={{width:width, height:'100%'}}>
       <Card sx={{width:'100%', height:'100%'}}>
         <CardActionArea>
           <CardMedia
