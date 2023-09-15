@@ -104,10 +104,10 @@ const UserLayout = ({ children, contentHeightFixed }) => {
         useEffect(() => {
             // Check if window is defined (client-side)
             if (typeof window !== 'undefined') {
-                setIsWideScreen(window.innerWidth >= 640);
+                setIsWideScreen(window.innerWidth >= 810);
 
                 const handleResize = () => {
-                    setIsWideScreen(window.innerWidth >= 640);
+                    setIsWideScreen(window.innerWidth >= 810);
                 };
 
                 window.addEventListener('resize', handleResize);
