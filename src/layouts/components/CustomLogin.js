@@ -356,7 +356,7 @@ const LoginDialog = ({ open, onClose, initialTab, switchTab }) => {
       <Divider sx={{ backgroundColor: theme => theme.palette.primary.main }} />
 
       <DialogContent>
-        {initialTab === 0 && <LoginForm />} {/* Render Login content when activeTab is 0 */}
+        {initialTab === 0 && <LoginForm onClose={onClose} />} {/* Render Login content when activeTab is 0 */}
         {initialTab === 1 && <SignupTabContent />} {/* Render Signup content when activeTab is 1 */}
       </DialogContent>
     </Dialog>

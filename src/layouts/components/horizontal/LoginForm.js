@@ -1,11 +1,14 @@
-import { Box, Typography, TextField, Button, FormHelperText, FormControlLabel, Checkbox } from '@mui/material'
+import { Box, Typography, TextField, Button, FormHelperText, Checkbox } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useAuth } from 'src/hooks/useAuth'
 import { styled } from '@mui/material/styles'
 import Link from 'next/link'
 import axios from 'axios'
+import { useState } from 'react'
+import MyButton from './component/ButtonWTimeOut'
 
-const LoginForm = () => {
+const LoginForm = ({ onClose }) => {
+  const [codeError, setCodeError] = useState({})
   const CustomTextField = styled(TextField)({
     '& .MuiOutlinedInput-root': {
       borderTopRightRadius: 0,
@@ -38,22 +41,42 @@ const LoginForm = () => {
     formState: { errors }
   } = useForm()
 
+  const email = watch('email')
   const phoneNumber = watch('phoneNumber')
 
   const errorCallback = () => {}
 
   const onSubmit = data => {
-    console.log(data)
+    // console.log(data)
     auth.login(data, errorCallback)
+    onClose()
   }
 
-  const handleVerificationClick = () => {
-    axios
-      .get(
-        `http://api.airobotoedu.com/api/phoneNumber/generateOTP?phoneNumber=${phoneNumber}
-    `
+  const handleVerificationClick = async () => {
+    if (!phoneNumber || !email) {
+      setCodeError({ error: 'Please enter email and phone number' })
+      return false
+    }
+
+    try {
+      const res = await axios.post(
+        `http://api.airobotoedu.com/api/phoneNumber/generateOTP/login
+    `,
+        { email, phoneNumber }
       )
-      .catch(error => {})
+
+      if (res.data.code === 402) {
+        throw new Error('Phone number does not match the record')
+      }
+      if (res.data.code === 401) {
+        throw new Error('Email does not match the record')
+      }
+    } catch (error) {
+      setCodeError({ ...codeError, error: error.message })
+      return false
+    }
+
+    return true
   }
 
   return (
@@ -105,16 +128,10 @@ const LoginForm = () => {
               />
             </Box>
             <Box width={'30%'}>
-              <Button
-                variant='contained'
-                onClick={handleVerificationClick}
-                sx={{ height: '56px', borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
-              >
-                Get Code
-              </Button>
+              <MyButton handleVerificationClick={handleVerificationClick}></MyButton>
             </Box>
           </Box>
-          {errors.code && <FormHelperText sx={{ color: 'error.main' }}>{errors.code.message}</FormHelperText>}
+          {codeError.error && <FormHelperText sx={{ color: 'error.main' }}>{codeError.error}</FormHelperText>}
 
           {/* reset pw + remember me */}
           <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} flexWrap='wrap' mt={3}>
