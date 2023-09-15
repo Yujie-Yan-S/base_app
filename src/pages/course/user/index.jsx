@@ -14,14 +14,15 @@ const UserCoursePage = () => {
   const dispatch = useDispatch();
 
   const courseData = useSelector(state=>state.courses.coursedetails)
-  if(courseData){
-    console.log(courseData)
-  }
+
+  // if(courseData){
+  //   console.log(courseData)
+  // }
 
 
   useEffect(() => {
     if(router.isReady){
-      console.log('router is ',router.query.userId)
+      // console.log('router is ',router.query.userId)
       dispatch(fetchCourseById(router.query.userId));
 
     }

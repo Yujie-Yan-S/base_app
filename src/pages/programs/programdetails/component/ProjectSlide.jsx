@@ -16,7 +16,7 @@ function SampleNextArrow(props) {
 }
 
 const ProjectSlide = ({ data }) => {
-  console.log('data is ', data)
+  // console.log('data is ', data)
   // console.log('data is ', data.data[0].cover)
 
   const lg = useMediaQuery(theme => theme.breakpoints.down('lg'))

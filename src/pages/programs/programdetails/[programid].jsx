@@ -22,37 +22,38 @@ import { fetchProjects } from 'src/store/features/project_list/projectSlice'
 
 const ProgramDetails = () => {
   const router = useRouter()
-  const id = router.query.programid
 
   const dispatch = useDispatch()
   const { programDetailData, status, error } = useSelector(state => state.programDetail)
 
-  const { courses, status1, error1 } = useSelector(state => state.courses)
+  const courses = useSelector(state => state.courses.courses)
+  const status1 = useSelector(state => state.courses.status)
+  const status2 = useSelector(state => state.projects.status)
 
-  const { projects, status2, error2 } = useSelector(state => state.projects)
+  const projects = useSelector(state => state.projects.projects)
 
-  const pathname = window.location.pathname
+  // const pathname = window.location.pathname
+  //
+  // const parts = pathname.split('/')
+  // const programId = parts[parts.length - 2]
 
-  const parts = pathname.split('/')
-  const programId = parts[parts.length - 2]
+
 
   useEffect(() => {
-    dispatch(fetchProgramDetail(programId))
-  }, [dispatch])
-
-  useEffect(() => {
-    if (id) {
+    if (router.isReady) {
+      const id = router.query.programid
       dispatch(fetchCourses({ id, page: 1, num: 2 }))
-    }
-  }, [dispatch, id])
-
-  useEffect(() => {
-    if (id) {
       dispatch(fetchProjects({ id, page: 1, num: 2 }))
-    }
-  }, [dispatch, id])
+      dispatch(fetchProgramDetail(id))
 
-  if (status === 'loading') {
+
+    }
+  }, [dispatch,router])
+
+
+
+
+  if (status === 'loading' || status1==='loading' || status2==='loading') {
     return <box>Loading...</box>
   }
 
@@ -62,7 +63,7 @@ const ProgramDetails = () => {
 
   const data = courses ? courses.data : null
 
-  console.log('projects are ', projects)
+  // console.log('projects are ', projects)
 
   // 在这里可以根据 courseid 加载相应的课程信息
 
@@ -115,5 +116,7 @@ const ProgramDetails = () => {
     </Box>
   )
 }
+
+ProgramDetails.authGuard=false
 
 export default ProgramDetails

@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState = {
   courses: [],
-  status: 'idle',
+  status: 'loading',
   error: null,
   coursedetails:null
 };

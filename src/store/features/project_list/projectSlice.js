@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const initialState = {
   projects: [],
-  status: 'idle',
+  status: 'loading',
   error: null
 }
 
@@ -26,7 +26,8 @@ const projectsSlice = createSlice({
       })
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        console.log('action is', action.payload.data)
+
+        // console.log('action is', action.payload.data)
         state.projects = action.payload.data
       })
       .addCase(fetchProjects.rejected, (state, action) => {
