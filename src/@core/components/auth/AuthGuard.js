@@ -39,7 +39,6 @@ const AuthGuard = props => {
     return fallback
   }
 
-  console.log('auth guard pass')
   return <>{children}</>
 }
 

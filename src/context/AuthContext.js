@@ -33,6 +33,7 @@ const AuthProvider = ({ children }) => {
       const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)
       if (storedToken) {
         setLoading(true)
+        console.log("we have token, let's do auth")
         await axios
           .get(authConfig.meEndpoint, {
             headers: {
@@ -40,6 +41,7 @@ const AuthProvider = ({ children }) => {
             }
           })
           .then(async response => {
+            console.log(response)
             setLoading(false)
             setUser({ ...response.data.userData })
           })
@@ -50,7 +52,7 @@ const AuthProvider = ({ children }) => {
             setUser(null)
             setLoading(false)
             if (authConfig.onTokenExpiration === 'logout' && !router.pathname.includes('login')) {
-              router.replace('/login')
+              router.replace('/home')
             }
           })
       } else {
@@ -72,8 +74,8 @@ const AuthProvider = ({ children }) => {
           window.localStorage.setItem(authConfig.storageTokenKeyName, response.data.data.token)
           window.localStorage.setItem('userData', JSON.stringify(response.data.data.user))
         }
-        console.log("this is get user data",response.data.data.user)
-        setUser({user: response.data.data.user })
+        console.log('this is get user data', response.data.data.user)
+        setUser({ user: response.data.data.user })
         const returnUrl = router.query.returnUrl
         const redirectURL = returnUrl && returnUrl !== '/home' ? returnUrl : '/home'
 
@@ -88,7 +90,7 @@ const AuthProvider = ({ children }) => {
     setUser(null)
     window.localStorage.removeItem('userData')
     window.localStorage.removeItem(authConfig.storageTokenKeyName)
-    router.push('/login')
+    router.push('/home')
   }
 
   const values = {

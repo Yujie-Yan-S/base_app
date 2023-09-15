@@ -17,15 +17,14 @@ const Courses = () => {
   const router = useRouter()
   const queryParams = router.query
   const page = parseInt(queryParams.pageNum, 10) ? parseInt(queryParams.pageNum, 10) : 0
-  console.log(page)
+  // console.log(page)
 
-  const handleCardClick=(id)=>{
+  const handleCardClick = id => {
     router.push({
       pathname: '/course/user',
-      query: { userId: id },
+      query: { userId: id }
     })
   }
-
 
   useEffect(() => {
     if (router.isReady) {
@@ -52,7 +51,13 @@ const Courses = () => {
   const courseList = courseListFromSearch.map((item, index) => {
     return (
       <Grid item key={index} md={3}>
-        <CourseCard click={()=>handleCardClick(item.id)} key={index} img={item.cover} title={item.name} tags={item.tag} />
+        <CourseCard
+          click={() => handleCardClick(item.id)}
+          key={index}
+          img={item.cover}
+          title={item.name}
+          tags={item.tag}
+        />
       </Grid>
     )
   })
