@@ -9,6 +9,7 @@ import MyButton from './component/ButtonWTimeOut'
 
 const LoginForm = ({ onClose }) => {
   const [codeError, setCodeError] = useState({})
+
   const CustomTextField = styled(TextField)({
     '& .MuiOutlinedInput-root': {
       borderTopRightRadius: 0,
@@ -55,7 +56,8 @@ const LoginForm = ({ onClose }) => {
   const handleVerificationClick = async () => {
     if (!phoneNumber || !email) {
       setCodeError({ error: 'Please enter email and phone number' })
-      return false
+      
+return false
     }
 
     try {
@@ -73,7 +75,8 @@ const LoginForm = ({ onClose }) => {
       }
     } catch (error) {
       setCodeError({ ...codeError, error: error.message })
-      return false
+      
+return false
     }
 
     return true

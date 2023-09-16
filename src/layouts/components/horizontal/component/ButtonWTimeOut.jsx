@@ -9,12 +9,15 @@ const MyButton = ({ handleVerificationClick }) => {
   useEffect(() => {
     if (countDown === 0) {
       setIsDisabled(false)
-      return
+      
+return
     }
+
     const id = setInterval(() => {
       setCountDown(preState => preState - 1)
     }, 1000)
-    return () => {
+    
+return () => {
       clearInterval(id)
     }
   }, [countDown])

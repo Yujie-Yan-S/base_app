@@ -17,16 +17,14 @@ const Courses = () => {
   const router = useRouter()
   const queryParams = router.query
   const page = parseInt(queryParams.pageNum, 10) ? parseInt(queryParams.pageNum, 10) : 0
+
   // console.log(page)
 
   const handleCardClick = id => {
     router.push({
-<<<<<<< HEAD
-      pathname: '/course/user',
-      query: { userId: id }
-=======
+
       pathname: `/course/`+id
->>>>>>> refs/remotes/origin/master
+
     })
   }
 
