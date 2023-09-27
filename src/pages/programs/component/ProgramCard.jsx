@@ -9,7 +9,7 @@ export default function ProgramCard({ id, title, description, tag, titleTag, bac
 
   return (
     <Box display='flex' alignItems='row' sx={{ backgroundImage: background }}>
-      <Grid container md={12}>
+      <Grid container>
         <Grid item md={8}>
           <Card
             sx={{

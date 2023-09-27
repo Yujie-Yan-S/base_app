@@ -5,12 +5,11 @@ import Divider from '@mui/material/Divider'
 import React from 'react'
 import CustomBreadcrumb from './component/Breadcrumb'
 
-import {useRouter} from "next/router";
-import {useParams} from "next/navigation";
+import { useRouter } from 'next/router'
 
 function CourseDetails() {
-  const router = useRouter();
-  console.log("this is router", router.query)
+  const router = useRouter()
+  console.log('this is router', router.query)
 
   const courseData = {
     title: 'Lingke',

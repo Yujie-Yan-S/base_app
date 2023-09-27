@@ -1,22 +1,53 @@
-// ** MUI Imports
 import { useEffect, useState } from 'react'
 import ProgramCard from './component/ProgramCard'
-import { Box, TextField, Typography } from '@mui/material'
+import { Box, List, ListItem, Menu, MenuItem, Select, TextField, Typography } from '@mui/material'
 import Divider from '@mui/material/Divider'
 import Chip from '@mui/material/Chip'
 import InputAdornment from '@mui/material/InputAdornment'
 import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPrograms } from 'src/store/features/program_page_list/programSlice'
+import { useRouter } from 'next/router'
+import { fetchProgramBySearch } from 'src/store/features/program_by_search/programSearchSlice'
+import axios from 'axios'
+import debounce from 'lodash/debounce'
+import SearchDropDownList from './component/SearchDropDownList'
+import zIndex from '@mui/material/styles/zIndex'
 
 const Programs = () => {
   const [inputValue, setInputValue] = useState('')
+  const [searchListOpen, setSearchListOpen] = useState(false)
+  const [programNameList, setProgramNameList] = useState([])
+
   const dispatch = useDispatch()
-  const { programs, status, error } = useSelector(state => state.programs)
+  // const { programs } = useSelector(state => state.programs)
+  const { programListFromSearch, status, error } = useSelector(state => state.programBySearch)
+
+  const router = useRouter()
+  const query = router.query
 
   useEffect(() => {
-    dispatch(fetchPrograms())
-  }, [dispatch])
+    if (router.isReady) {
+      // console.log('query is', query)
+      dispatch(fetchProgramBySearch(`keyWord=${query.keyWord}&pageNum=${query.pageNum}&pageSize=${query.pageSize}`))
+    }
+  }, [dispatch, router])
+
+  useEffect(() => {
+    const search = async () => {
+      if (inputValue !== '') {
+        const res = await axios.get(
+          `http://api.airobotoedu.com/api/program/get_program_list_by_begin_word?keyWord=${inputValue}`
+        )
+        console.log(res.data.data)
+        setProgramNameList(res.data.data)
+      } else {
+        setProgramNameList([])
+      }
+    }
+    const debounceSearch = debounce(search, 300)
+    debounceSearch()
+  }, [inputValue])
+
   if (status === 'loading') {
     return <box>Loading...</box>
   }
@@ -26,12 +57,41 @@ const Programs = () => {
   }
 
   // Top category tag
-  const tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5']
-
+  const tags = [
+    'Machine Learning',
+    'Big Data',
+    'Autonomous Driving',
+    'Advanced Robotics',
+    'Electric Vehicles',
+    'Machine Learning',
+    'Big Data',
+    'Autonomous Driving',
+    'Advanced Robotics',
+    'Electric Vehicles'
+  ]
   const tempProjectTage = ['Machine learning', 'Data Science', 'XXXX', 'XXXXXX']
-  const handleChipClick = () => {}
 
-  const programList = programs?.map((item, index) => {
+  const handleTagClick = Tag => {
+    router.push({
+      pathname: '/programs/',
+      query: { keyWord: Tag, pageNum: 0, pageSize: 6 }
+    })
+  }
+
+  const handleSelectResult = keyWord => {
+    setInputValue(keyWord)
+    router.push({
+      pathname: '/programs/',
+      query: { keyWord: keyWord, pageNum: 0, pageSize: 6 }
+    })
+  }
+
+  const handleInputChange = e => {
+    setInputValue(e.target.value)
+    setSearchListOpen(true)
+  }
+
+  const programList = programListFromSearch?.map((item, index) => {
     const backgroundColor =
       index % 2 === 0 ? 'linear-gradient(to right, #787878, #FFFFFF)' : 'linear-gradient(to right, #CACACA, #FEFEFE)'
 
@@ -61,34 +121,74 @@ const Programs = () => {
       >
         <Typography variant={'h3'}>Our programs</Typography>
         <Divider sx={{ backgroundColor: theme => theme.palette.primary.main, margin: '2rem', width: '70%' }} />
-
-        <TextField
-          value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
-          InputProps={{
-            sx: {
-              placeHolder: 'Search',
-              borderRadius: '25px',
-              height: '2rem'
-            },
-            startAdornment: (
-              <InputAdornment position='start'>
-                <SearchIcon />
-              </InputAdornment>
-            )
-          }}
-          id='fullWidth'
-          sx={{ width: '70%', borderRadius: '25px', backgroundColor: '#f0f0f0' }}
-        />
+        <Box width={'70%'}>
+          <TextField
+            value={inputValue}
+            onChange={handleInputChange}
+            onBlur={() => setTimeout(() => setSearchListOpen(false), 100)}
+            onFocus={() => setSearchListOpen(true)}
+            InputProps={{
+              sx: {
+                position: 'relative',
+                placeHolder: 'Search',
+                borderRadius: '25px',
+                height: '2rem'
+              },
+              startAdornment: (
+                <InputAdornment position='start'>
+                  <SearchIcon />
+                </InputAdornment>
+              )
+            }}
+            id='fullWidth'
+            sx={{ width: '80%', borderRadius: '25px', backgroundColor: '#f0f0f0' }}
+          />
+          {searchListOpen && (
+            <List
+              sx={{
+                width: '55%',
+                zIndex: 1,
+                position: 'absolute',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                background: 'white'
+              }}
+            >
+              {programNameList.map((item, index) => {
+                return (
+                  <ListItem
+                    button
+                    key={index}
+                    onClick={() => handleSelectResult(item)}
+                    sx={{ width: '100%', textAlign: 'left' }}
+                  >
+                    {item}
+                  </ListItem>
+                )
+              })}
+            </List>
+          )}
+        </Box>
 
         <Box display='flex' flexDirection='column' sx={{ marginTop: '1rem', width: '70%' }}>
-          <Box display='flex' justifyContent='flex-start' gap={8} overflow='hidden'>
-            <Typography variant={'h6'} color={theme => theme.palette.primary.main}>
+          <Box display='flex' flexWrap={'wrap'} justifyContent='flex-start' gap={3} overflow='hidden'>
+            <Typography
+              onClick={() => handleTagClick()}
+              variant={'h6'}
+              color={theme => theme.palette.primary.main}
+              sx={{
+                '&:hover': {
+                  fontWeight: 'bold',
+                  cursor: 'pointer' // Change the cursor to a pointer on hover
+                }
+              }}
+            >
               All
             </Typography>
-            {tags.map(tag => (
+            {tags.map((tag, index) => (
               <Chip
-                key={tag}
+                key={index}
                 label={tag}
                 variant='outlined'
                 onClick={() => handleTagClick(tag)}
@@ -97,23 +197,6 @@ const Programs = () => {
                   border: 'none', // Remove outline
                   color: 'inherit' // Use the default text color
                 }}
-              />
-            ))}
-          </Box>
-          <Box display='flex' justifyContent='flex-start' gap={8} overflow='hidden' sx={{ marginBottom: '1rem' }}>
-            <Typography variant={'h6'} color={theme => theme.palette.primary.main}>
-              All{' '}
-            </Typography>
-            {tags.map(tag => (
-              <Chip
-                key={tag}
-                label={tag}
-                sx={{
-                  background: 'none', // Remove background color
-                  border: 'none', // Remove outline
-                  color: 'inherit' // Use the default text color
-                }}
-                onClick={() => handleTagClick(tag)}
               />
             ))}
           </Box>

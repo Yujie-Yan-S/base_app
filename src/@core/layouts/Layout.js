@@ -11,6 +11,7 @@ const Layout = props => {
 
   // ** Ref
   const isCollapsed = useRef(settings.navCollapsed)
+
   useEffect(() => {
     if (hidden) {
       if (settings.navCollapsed) {

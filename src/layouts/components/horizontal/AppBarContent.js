@@ -88,7 +88,6 @@ const AppBarContent = props => {
   const [ishover, setIshover] = useState(false)
 
   const user = auth.user
-  console.log('Here is user context ', user)
 
   const handleClick = event => {
     setIshover(true)

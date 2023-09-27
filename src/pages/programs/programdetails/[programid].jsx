@@ -1,18 +1,12 @@
 import { useRouter } from 'next/router'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import HomePageCard from '../../home/components/HomePageCard'
 import React, { useEffect } from 'react'
 import Divider from '@mui/material/Divider'
-import Button from '@mui/material/Button'
-import { Stack } from '@mui/system'
-import Avatar from '@mui/material/Avatar'
 import ProjectSlide from './component/ProjectSlide'
 import ProgramBanner from './component/ProgramBanner'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import ProgramCourses from './component/ProgramCourses'
 import ProgramAssesment from './component/ProgramAssesment'
 import { useDispatch, useSelector } from 'react-redux'
@@ -37,23 +31,16 @@ const ProgramDetails = () => {
   // const parts = pathname.split('/')
   // const programId = parts[parts.length - 2]
 
-
-
   useEffect(() => {
     if (router.isReady) {
       const id = router.query.programid
       dispatch(fetchCourses({ id, page: 1, num: 2 }))
       dispatch(fetchProjects({ id, page: 1, num: 2 }))
       dispatch(fetchProgramDetail(id))
-
-
     }
-  }, [dispatch,router])
+  }, [dispatch, router])
 
-
-
-
-  if (status === 'loading' || status1==='loading' || status2==='loading') {
+  if (status === 'loading' || status1 === 'loading' || status2 === 'loading') {
     return <box>Loading...</box>
   }
 
@@ -117,6 +104,6 @@ const ProgramDetails = () => {
   )
 }
 
-ProgramDetails.authGuard=false
+ProgramDetails.authGuard = false
 
 export default ProgramDetails

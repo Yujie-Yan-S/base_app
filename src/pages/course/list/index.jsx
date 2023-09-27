@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Spinner from 'src/@core/components/spinner'
-import { fetchCourseBySearch } from 'src/store/features/course_by_search/CourseSearchSlice'
+import { fetchCourseBySearch } from 'src/store/features/course_by_search/courseSearchSlice'
 import CourseCard from './component/CourseCard'
 import querystring from 'querystring'
 import pagination from 'src/configs/pagination'
@@ -21,12 +21,8 @@ const Courses = () => {
 
   const handleCardClick = id => {
     router.push({
-<<<<<<< HEAD
       pathname: '/course/user',
       query: { userId: id }
-=======
-      pathname: `/course/`+id
->>>>>>> refs/remotes/origin/master
     })
   }
 

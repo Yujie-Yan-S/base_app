@@ -33,7 +33,6 @@ const AuthProvider = ({ children }) => {
       const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)
       if (storedToken) {
         setLoading(true)
-        console.log("we have token, let's do auth")
 
         await axios
           .get(authConfig.meEndpoint, {
@@ -42,8 +41,8 @@ const AuthProvider = ({ children }) => {
             }
           })
           .then(async response => {
-            console.log('res from token is', response.data.data.user)
-            console.log('user is', response.data.data.user.firstName)
+            // console.log('res from token is', response.data.data.user)
+            // console.log('user is', response.data.data.user.firstName)
 
             setLoading(false)
             setUser({ user: response.data.data.user })

@@ -5,8 +5,9 @@ import imageReducer from './features/carousel_pic_list/carouselImagesSlice'
 import programDetailReducer from './features/program_details/programDetailSlice'
 import courseReducer from './features/courses_list/coursesSlice'
 import projectsSlice from './features/project_list/projectSlice'
-import authSlice from "./features/authentication/authSlice";
-import courseSearchSlice from './features/course_by_search/CourseSearchSlice'
+import authSlice from './features/authentication/authSlice'
+import courseSearchSlice from './features/course_by_search/courseSearchSlice'
+import programSearchSlice from './features/program_by_search/programSearchSlice'
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     courses: courseReducer,
     projects: projectsSlice,
     authentication: authSlice,
-    courseBySearch: courseSearchSlice
+    courseBySearch: courseSearchSlice,
+    programBySearch: programSearchSlice
   }
 })
