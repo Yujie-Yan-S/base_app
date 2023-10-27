@@ -16,8 +16,8 @@ export default function HomePageCard({ image, text, width }) {
           <CardMedia
             component="img"
             height="100%"
-            image={image}
-            alt="Card Image"
+            image={image?image : "https://picsum.photos/300"}
+            alt=""
           />
           <CardContent sx={{pb:'0px !important',p:3, height:'84px'}} >
             <Typography height={'100%'}  sx={{fontWeight:'650', color:'black',wordWrap:"break-word", textOverflow:'ellipsis', overflow:'hidden'}}>

@@ -83,6 +83,6 @@ const UserCoursePage = () => {
   )
 }
 
-UserCoursePage.authGuard = false
+UserCoursePage.authGuard = true
 
 export default UserCoursePage

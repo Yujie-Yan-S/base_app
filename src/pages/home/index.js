@@ -61,7 +61,7 @@ const Home = () => {
   const MyComponent = cardData.map((item, index) => {
     return (
       <Grid key={index} item xs={6} sm={4} lg={3} display='flex' justifyContent='center' alignItems='center'>
-        <HomePageCard text={item.description} image={item.cover} width={'80%'} />
+        <HomePageCard text={item.description} image={item.cover==="http://media.airobotoedu.com/default.jpg"?item.cover : "https://picsum.photos/610/582"} width={'80%'} />
       </Grid>
     )
   })
@@ -96,11 +96,11 @@ const Home = () => {
               </Grid>
             </Box>
           </Box>
-          <Box minHeight={'100px'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-            <Typography variant={'h5'} color={theme => theme.palette.primary.main}>
-              More course
-            </Typography>
-          </Box>
+          {/*<Box minHeight={'100px'} display={'flex'} justifyContent={'center'} alignItems={'center'}>*/}
+          {/*  <Typography variant={'h5'} color={theme => theme.palette.primary.main}>*/}
+          {/*    More course*/}
+          {/*  </Typography>*/}
+          {/*</Box>*/}
         </Box>
       </Box>
     </Box>

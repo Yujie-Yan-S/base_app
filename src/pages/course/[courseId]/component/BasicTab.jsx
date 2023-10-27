@@ -61,7 +61,7 @@ export default function BasicTabs({ about, syllabus }) {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         {syllabus.map((item, index) => (
-          <Box key={index} height={'85px'}>
+          <Box key={index} height={'85px'} onClick = {()=>{alert('clicked '+ index)}}>
             <Divider sx={{ mb: 1, background: theme => theme.palette.primary.main }} />
             <Box display={'flex'}>
               <Typography

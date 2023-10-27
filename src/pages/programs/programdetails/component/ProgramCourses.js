@@ -6,8 +6,11 @@ import React from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 const ProgramCourses = ({ data }) => {
-  // console.log('this is the passed data')
-  // console.log(data)
+  console.log('this is the passed data')
+  console.log(data)
+  const filteredData = data.filter(item => item !== null);
+  console.log('zhegeshi filter edata', filteredData)
+
 
   const lg = useMediaQuery(theme => theme.breakpoints.down('lg'))
   const xl = useMediaQuery(theme => theme.breakpoints.down('xl'))
@@ -15,8 +18,8 @@ const ProgramCourses = ({ data }) => {
   const sm = useMediaQuery(theme => theme.breakpoints.down('sm'))
   const xs = useMediaQuery(theme => theme.breakpoints.down('xs'))
 
-  let slidesToShow = data && data.length
-  let slidesToScroll = data && data.length
+  let slidesToShow = filteredData && filteredData.length
+  let slidesToScroll = filteredData && filteredData.length
 
   if (xs) {
     slidesToShow = slidesToShow > 1 ? 1 : slidesToShow
@@ -64,16 +67,21 @@ const ProgramCourses = ({ data }) => {
         display={'flex'}
         justifyContent={'center'}
       >
-        <Box pt={'59px'} width={'106%'}>
+        <Box  width={'106%'}>
           <Slider {...settings}>
-            {data &&
-              data.map((item, i) => {
-                return (
-                  <Box key={i} pb={3} display={'flex !important'} justifyContent={'center'}>
-                    <HomePageCard text={item.description} image={item.cover} width={'250px'} />
-                  </Box>
-                )
-              })}
+            {filteredData &&
+                filteredData.map((item, i) => {
+                  console.log(item)
+
+return (
+                        <Box key={i} pb={3} display={'flex !important'} justifyContent={'center'}>
+                          <HomePageCard text={item.description} image={item.cover} width={'250px'} />
+                        </Box>
+                    );
+
+return null; // 如果item为null，则不渲染任何内容
+                })}
+
           </Slider>
         </Box>
       </Box>

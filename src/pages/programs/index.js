@@ -19,6 +19,7 @@ const Programs = () => {
   const [programNameList, setProgramNameList] = useState([])
 
   const dispatch = useDispatch()
+
   // const { programs } = useSelector(state => state.programs)
   const { programListFromSearch, status, error } = useSelector(state => state.programBySearch)
 
@@ -28,7 +29,15 @@ const Programs = () => {
   useEffect(() => {
     if (router.isReady) {
       // console.log('query is', query)
-      dispatch(fetchProgramBySearch(`keyWord=${query.keyWord}&pageNum=${query.pageNum}&pageSize=${query.pageSize}`))
+      const params = {
+        keyWord: query.keyWord,
+        pageNum: query.pageNum,
+        pageSize: query.pageSize
+      };
+
+      dispatch(fetchProgramBySearch(params));
+
+      // dispatch(fetchProgramBySearch(`keyWord=${query.keyWord}&pageNum=${query.pageNum}&pageSize=${query.pageSize}`))
     }
   }, [dispatch, router])
 

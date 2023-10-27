@@ -8,9 +8,13 @@ import { fetchCourseBySearch } from 'src/store/features/course_by_search/courseS
 import CourseCard from './component/CourseCard'
 import querystring from 'querystring'
 import pagination from 'src/configs/pagination'
+import {useAuth} from "../../../hooks/useAuth";
 
 const Courses = () => {
   const { status, totalPage, courseListFromSearch } = useSelector(state => state.courseBySearch)
+
+  const auth = useAuth()
+
 
   const dispatch = useDispatch()
 
@@ -20,14 +24,21 @@ const Courses = () => {
 
   // console.log(page)
 
-  const handleCardClick = id => {
-    router.push({
-      pathname: '/course/user',
-      query: { userId: id }
-    })
-  }
+    const handleCardClick = (id) => {
+        if (auth.user) {
+            router.push({
+                pathname: '/course/user',
+                query: { userId: id }
+            });
+        } else {
+            router.push({
+                pathname: `/course/${id}`
+            });
+        }
+    };
 
-  useEffect(() => {
+
+    useEffect(() => {
     if (router.isReady) {
       const currentQuery = querystring.stringify(queryParams)
         ? querystring.stringify(queryParams)
@@ -55,7 +66,7 @@ const Courses = () => {
         <CourseCard
           click={() => handleCardClick(item.id)}
           key={index}
-          img={item.cover}
+          img={item.cover ==="http://media.airobotoedu.com/default.jpg"?item.cover : "https://picsum.photos/610/582"}
           title={item.name}
           tags={item.tag}
         />

@@ -22,10 +22,18 @@ const OverrideFooter = () => {
             <Typography variant='h6' color='white'>
               About
             </Typography>
-            <Typography variant='body2' color='white'>
+            <Typography  sx={{
+              '&:hover': {
+                cursor: 'pointer'
+              }
+            }} variant='body2' color='white' onClick={() => {alert("contact us clicked")}}>
               Contact Us
             </Typography>
-            <Typography variant='body2' color='white'>
+            <Typography variant='body2' color='white'  sx={{
+              '&:hover': {
+                cursor: 'pointer'
+              }
+            }} onClick={() => {alert("company info clicked")}} >
               Company Information
             </Typography>
             {/* Add your about content here */}
@@ -35,7 +43,11 @@ const OverrideFooter = () => {
             <Typography variant='h6' color='white'>
               Collaboration
             </Typography>
-            <Typography variant='body2' color='white'>
+            <Typography variant='body2' color='white'  sx={{
+              '&:hover': {
+                cursor: 'pointer'
+              }
+            }} onClick={() => {alert("purchase business clicked")}}>
               Purchase Business Version
             </Typography>
           </Grid>
@@ -45,7 +57,11 @@ const OverrideFooter = () => {
               Question
             </Typography>
             {/* Add your question content here */}
-            <Typography variant='body2' color='white'>
+            <Typography variant='body2' color='white'  sx={{
+              '&:hover': {
+                cursor: 'pointer'
+              }
+            }} onClick={() => {alert("how to purcahse clicked")}}>
               How to purchase
             </Typography>
           </Grid>

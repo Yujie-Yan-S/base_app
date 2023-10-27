@@ -50,7 +50,7 @@ const ProgramDetails = () => {
 
   const data = courses ? courses.data : null
 
-  // console.log('projects are ', projects)
+  console.log('projects are ', projects)
 
   // 在这里可以根据 courseid 加载相应的课程信息
 

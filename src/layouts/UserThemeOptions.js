@@ -120,8 +120,7 @@ const UserThemeOptions = () => {
       borderRadius: 8
     },
     typography: {
-      fontFamily:
-        '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"'
+      fontFamily: '"Lato", sans-serif',
     },
     shadows:
       mode === 'light'

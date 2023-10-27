@@ -13,7 +13,7 @@ const CourseCard = ({click, img, title, tags }) => {
   ))
 
 return (
-    <Card sx={{ aspectRatio: '1/1' }} onClick={click}>
+    <Card sx={{ aspectRatio: '1/1.2' }} onClick={click}>
       <CardActionArea>
         <CardMedia component='img' image={img} alt='Card Image' />
         <CardContent sx={{ padding: 2 }}>

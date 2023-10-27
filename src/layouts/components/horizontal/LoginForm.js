@@ -56,7 +56,7 @@ const LoginForm = ({ onClose }) => {
   const handleVerificationClick = async () => {
     if (!phoneNumber || !email) {
       setCodeError({ error: 'Please enter email and phone number' })
-      
+
 return false
     }
 
@@ -75,7 +75,7 @@ return false
       }
     } catch (error) {
       setCodeError({ ...codeError, error: error.message })
-      
+
 return false
     }
 
@@ -83,7 +83,7 @@ return false
   }
 
   return (
-    <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
+    <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={"900px"}>
       <Box width={'72%'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
         <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
           <Typography mb={3} mt={3}>

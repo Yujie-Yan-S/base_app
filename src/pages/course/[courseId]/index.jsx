@@ -120,7 +120,7 @@ function CourseDetails() {
             </Grid>
             {/* right section */}
             <Grid item md={4}>
-              <Typography height={'10%'} fontWeight={'700'} fontSize={'20px'} display={'flex'} alignItems={'center'}>
+              <Typography height={'49px'} fontWeight={'700'} fontSize={'20px'} display={'flex'} alignItems={'center'}>
                 Instructor{' '}
               </Typography>
               <Divider sx={{ background: theme => theme.palette.primary.main }} />
