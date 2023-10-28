@@ -47,7 +47,7 @@ const Courses = () => {
       // console.log(currentQuery)
       dispatch(fetchCourseBySearch(currentQuery))
     }
-  }, [router])
+  }, [dispatch, queryParams, router])
 
   if (status === 'loading') {
     return (

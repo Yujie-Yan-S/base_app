@@ -52,7 +52,7 @@ const AppBarContent = props => {
     if (router.isReady && router.query.returnUrl) {
       setDialogOpen(true)
     }
-  }, [router.isReady])
+  }, [router.isReady, router.query.returnUrl])
 
   const handleDialogClose = () => {
     setDialogOpen(false)

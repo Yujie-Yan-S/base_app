@@ -79,7 +79,7 @@ function SignupTabContent() {
         clearTimeout(timer);
       };
     }
-  }, [getCodeMsg]);
+  }, [dispatch, getCodeMsg]);
 
   useEffect(() => {
     if (errorMsg) {
@@ -94,7 +94,7 @@ function SignupTabContent() {
         clearTimeout(timer);
       };
     }
-  }, [errorMsg]);
+  }, [dispatch, errorMsg]);
 
   const handleClose = () => {
     setOpen(false);

@@ -5,14 +5,17 @@ import React, { useEffect } from 'react'
 import CustomBreadcrumb from '../[courseId]/component/Breadcrumb'
 import CourseContentTab from '../list/component/CourseContentTab'
 import CourseBannerSlide from './component/CoureBannerSlide'
-import { router } from 'next/client'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCourseById } from '../../../store/features/courses_list/coursesSlice'
+import {useRouter} from "next/router";
 
 const UserCoursePage = () => {
   const dispatch = useDispatch()
 
   const courseData = useSelector(state => state.courses.coursedetails)
+
+  const router = useRouter()
 
   // if(courseData){
   //   console.log(courseData)
@@ -22,7 +25,7 @@ const UserCoursePage = () => {
     if (router.isReady) {
       dispatch(fetchCourseById(router.query.userId))
     }
-  }, [router])
+  }, [dispatch])
 
   const imgData = ['https://picsum.photos/441/229', 'https://picsum.photos/441/229']
 
