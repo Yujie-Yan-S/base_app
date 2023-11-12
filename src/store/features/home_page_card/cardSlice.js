@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const fetchCards = createAsyncThunk('cards/fetchCards', async () => {
-  const response = await axios.get('http://207.246.101.155/api/course/get_course_list'); // Replace with your API endpoint
+  const response = await axios.get('//207.246.101.155/api/course/get_course_list'); // Replace with your API endpoint
 
   return response.data;
 });

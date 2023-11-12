@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const generateOTP = createAsyncThunk('auth/generateOTP', async (payload) => {
-  const response = await axios.post(`http://api.airobotoedu.com/api/phoneNumber/generateOTP/signup`, payload);
+  const response = await axios.post(`//api.airobotoedu.com/api/phoneNumber/generateOTP/signup`, payload);
 
   return response.data;
 });
@@ -11,7 +11,7 @@ export const generateOTP = createAsyncThunk('auth/generateOTP', async (payload) 
 export const registerUser = createAsyncThunk('auth/registerUser', async (userData) => {
   try {
     console.log(userData)
-    const response = await axios.post('http://api.airobotoedu.com/api/register', userData);
+    const response = await axios.post('//api.airobotoedu.com/api/register', userData);
 
     return response.data;
   } catch (error) {

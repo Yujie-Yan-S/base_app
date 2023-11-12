@@ -12,7 +12,7 @@ const initialState={
 export const fetchImages=createAsyncThunk(
   'images/fetchImages',
   async ()=>{
-    const response = await axios.get('http://207.246.101.155/api/images/get_homepage_slides');
+    const response = await axios.get('//207.246.101.155/api/images/get_homepage_slides');
 
 return response.data;
   }

@@ -3,9 +3,17 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import PinterestIcon from '@mui/icons-material/Pinterest'
+import {useRouter} from "next/router";
+
+
+
 
 const OverrideFooter = () => {
-  return (
+
+  const router = useRouter()
+
+
+return (
     <Box width='100%'>
       <Grid
         container
@@ -26,14 +34,24 @@ const OverrideFooter = () => {
               '&:hover': {
                 cursor: 'pointer'
               }
-            }} variant='body2' color='white' onClick={() => {alert("contact us clicked")}}>
+            }} variant='body2' color='white' onClick={() => {
+              router.push({
+                pathname: '/info',
+                query: { code: 200 }
+              });
+            }}>
               Contact Us
             </Typography>
             <Typography variant='body2' color='white'  sx={{
               '&:hover': {
                 cursor: 'pointer'
               }
-            }} onClick={() => {alert("company info clicked")}} >
+            }} onClick={() => {
+              router.push({
+                pathname: '/info',
+                query: { code: 300 }
+              });
+            }}>
               Company Information
             </Typography>
             {/* Add your about content here */}
@@ -47,7 +65,12 @@ const OverrideFooter = () => {
               '&:hover': {
                 cursor: 'pointer'
               }
-            }} onClick={() => {alert("purchase business clicked")}}>
+            }} onClick={() => {
+              router.push({
+                pathname: '/info',
+                query: { code: 400 }
+              });
+            }}>
               Purchase Business Version
             </Typography>
           </Grid>
@@ -61,7 +84,12 @@ const OverrideFooter = () => {
               '&:hover': {
                 cursor: 'pointer'
               }
-            }} onClick={() => {alert("how to purcahse clicked")}}>
+            }} onClick={() => {
+              router.push({
+                pathname: '/info',
+                query: { code: 200 }
+              });
+            }}>
               How to purchase
             </Typography>
           </Grid>

@@ -52,7 +52,7 @@ const UserCoursePage = () => {
           <Box sx={{ mr: { xs: 1, sm: 2, md: 20, lg: 20 }, ml: { xs: 1, sm: 2, md: 20, lg: 20 }, mb: '2rem' }}>
             <Grid container>
               {/* left section */}
-              <Grid item md={8}>
+              <Grid item md={7.5} mr={8}>
                 <CourseContentTab
                   about={courseData.data.description}
                   syllabus={courseData.data.lessonList}

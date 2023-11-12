@@ -9,14 +9,14 @@ const initialState = {
 };
 
 export const fetchCourses = createAsyncThunk('courses/fetchCourses', async ({id, page, num}) => {
-  const response = await axios.get(`http://api.airobotoedu.com/api/course/getCourseListByProgramId?id=${id}&pageNum=${page}&pageSize=${num}`); // Replace with your API endpoint
+  const response = await axios.get(`//api.airobotoedu.com/api/course/getCourseListByProgramId?id=${id}&pageNum=${page}&pageSize=${num}`); // Replace with your API endpoint
 
   return response.data;
 });
 
 
 export const fetchCourseById = createAsyncThunk('courses/fetchCourseById', async (id) => {
-  const response = await axios.get(`http://api.airobotoedu.com/api/course/get_course_detail?id=${id}`); // Replace with your API endpoint
+  const response = await axios.get(`//api.airobotoedu.com/api/course/get_course_detail?id=${id}`); // Replace with your API endpoint
 
   return response.data;
 });

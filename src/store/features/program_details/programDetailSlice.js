@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export const fetchProgramDetail = createAsyncThunk('fetchProgramDetail', async id => {
-  const response = await axios.get(`http://api.airobotoedu.com/api/program/get_program_detail?id=${id}`) //
+  const response = await axios.get(`//api.airobotoedu.com/api/program/get_program_detail?id=${id}`) //
 
   return response.data.data
 })

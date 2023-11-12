@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const fetchCourseBySearch = createAsyncThunk('courses/fetchCourseBySearch', async query => {
-  const response = await axios.get(`http://api.airobotoedu.com/api/course/get_course_list_by_search?${query}`)
+  const response = await axios.get(`//api.airobotoedu.com/api/course/get_course_list_by_search?${query}`)
 
   return response.data
 })

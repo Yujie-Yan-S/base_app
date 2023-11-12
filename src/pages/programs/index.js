@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import ProgramCard from './component/ProgramCard'
 import { Box, List, ListItem, Menu, MenuItem, Select, TextField, Typography } from '@mui/material'
 import Divider from '@mui/material/Divider'
@@ -19,6 +19,7 @@ const Programs = () => {
   const [programNameList, setProgramNameList] = useState([])
 
   const dispatch = useDispatch()
+  const inputRef = useRef(null);
 
   // const { programs } = useSelector(state => state.programs)
   const { programListFromSearch, status, error } = useSelector(state => state.programBySearch)
@@ -45,7 +46,7 @@ const Programs = () => {
     const search = async () => {
       if (inputValue !== '') {
         const res = await axios.get(
-          `http://api.airobotoedu.com/api/program/get_program_list_by_begin_word?keyWord=${inputValue}`
+          `//api.airobotoedu.com/api/program/get_program_list_by_begin_word?keyWord=${inputValue}`
         )
         console.log(res.data.data)
         setProgramNameList(res.data.data)
@@ -56,6 +57,16 @@ const Programs = () => {
     const debounceSearch = debounce(search, 300)
     debounceSearch()
   }, [inputValue])
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSelectResult(inputValue);
+    }
+  };
+
+  //
+
+
 
   if (status === 'loading') {
     return <box>Loading...</box>
@@ -87,12 +98,12 @@ const Programs = () => {
     })
   }
 
-  const handleSelectResult = keyWord => {
-    setInputValue(keyWord)
-    router.push({
-      pathname: '/programs/',
-      query: { keyWord: keyWord, pageNum: 0, pageSize: 6 }
-    })
+  const handleSelectResult = async keyWord => {
+    const params = {
+      keyWord: keyWord,
+    };
+
+    dispatch(fetchProgramBySearch(params));
   }
 
   const handleInputChange = e => {
@@ -132,22 +143,24 @@ const Programs = () => {
         <Divider sx={{ backgroundColor: theme => theme.palette.primary.main, margin: '2rem', width: '70%' }} />
         <Box width={'70%'}>
           <TextField
+            ref={inputRef} // Use ref directly
             value={inputValue}
             onChange={handleInputChange}
             onBlur={() => setTimeout(() => setSearchListOpen(false), 100)}
             onFocus={() => setSearchListOpen(true)}
+            onKeyDown={handleKeyDown} // Add the event listener here
             InputProps={{
               sx: {
                 position: 'relative',
                 placeHolder: 'Search',
                 borderRadius: '25px',
-                height: '2rem'
+                height: '2rem',
               },
               startAdornment: (
-                <InputAdornment position='start'>
-                  <SearchIcon />
+                <InputAdornment position='start' onClick={()=>{handleSelectResult(inputValue);}}>
+                  <SearchIcon/>
                 </InputAdornment>
-              )
+              ),
             }}
             id='fullWidth'
             sx={{ width: '80%', borderRadius: '25px', backgroundColor: '#f0f0f0' }}

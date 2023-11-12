@@ -14,7 +14,7 @@ export const fetchProgramBySearch = createAsyncThunk('courses/fetchProgramBySear
   const pageNum1=query.pageNum?query.pageNum:0
   const pageSize1=query.pageSize?query.pageSize:12
   console.log(query)
-    const response = await axios.get(`http://api.airobotoedu.com/api/program/get_program_list_by_search?keyWord=${keyword1}&pageNum=${pageNum1}&pageSize=${pageSize1}`)
+    const response = await axios.get(`//api.airobotoedu.com/api/program/get_program_list_by_search?keyWord=${keyword1}&pageNum=${pageNum1}&pageSize=${pageSize1}`)
 
   // }
   // else{

@@ -66,7 +66,7 @@ const Courses = () => {
         <CourseCard
           click={() => handleCardClick(item.id)}
           key={index}
-          img={item.cover ==="http://media.airobotoedu.com/default.jpg"?item.cover : "https://picsum.photos/610/582"}
+          img={item.cover ==="//media.airobotoedu.com/default.jpg"?item.cover : "https://picsum.photos/610/582"}
           title={item.name}
           tags={item.tag}
         />

@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
+import {useRouter} from "next/router";
 
 // interface TabPanelProps {
 //   children?: React.ReactNode;
@@ -46,6 +47,8 @@ export default function BasicTabs({ about, syllabus }) {
     setValue(newValue)
   }
 
+  const router = useRouter()
+
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -61,7 +64,13 @@ export default function BasicTabs({ about, syllabus }) {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         {syllabus.map((item, index) => (
-          <Box key={index} height={'85px'} onClick = {()=>{alert('clicked '+ index)}}>
+
+          <Box key={item.id} height={'85px'} onClick = {()=>{router.push(
+            {
+              pathname: `/lesson/${item.id}`, // 这里的[index]将被替换为实际的值
+            }
+          )}}>
+            {console.log(item)} {/* 在这里打印item的值 */}
             <Divider sx={{ mb: 1, background: theme => theme.palette.primary.main }} />
             <Box display={'flex'}>
               <Typography
@@ -82,7 +91,7 @@ export default function BasicTabs({ about, syllabus }) {
                 display={'flex'}
                 alignItems={'center'}
               >
-                {item}
+                {item.description}
               </Typography>
             </Box>
           </Box>

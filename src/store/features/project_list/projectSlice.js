@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchProjects = createAsyncThunk('project/fetchProject', async ({ id, page, num }) => {
   const response = await axios.get(
-    `http://api.airobotoedu.com/api/project/getProjectListByProgramId?id=${id}&pageNum=${page}&pageSize=${num}`
+    `//api.airobotoedu.com/api/project/getProjectListByProgramId?id=${id}&pageNum=${page}&pageSize=${num}`
   ) // Replace with your API endpoint
 
   return response.data
