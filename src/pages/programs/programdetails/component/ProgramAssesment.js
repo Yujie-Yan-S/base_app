@@ -50,7 +50,7 @@ const ProgramAssesment=({description,imgs})=>{
             </Typography>
           </Box>
           <Box sx={{ height: '16.5%' }}>
-            <Button variant='contained' sx={{ height: '55px', width: '360px' }}>
+            <Button variant='contained' size='large' >
               <Typography color={'white'} variant={'h5'}>
                 Take The Assesment
               </Typography>
