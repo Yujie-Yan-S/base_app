@@ -49,7 +49,7 @@ const Error404 = () => {
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <BoxWrapper>
           <Typography variant='h1'>404</Typography>
-          <Typography variant='h5' sx={{ mb: 1, fontSize: '1.5rem !important' }}>
+          <Typography variant='h6' sx={{ mb: 1 }}>
             Page Not Found ⚠️
           </Typography>
           <Typography variant='body2'>We couldn&prime;t find the page you are looking for.</Typography>

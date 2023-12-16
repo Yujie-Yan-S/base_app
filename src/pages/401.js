@@ -40,7 +40,7 @@ const Error401 = () => {
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <BoxWrapper>
           <Typography variant='h1'>401</Typography>
-          <Typography variant='h5' sx={{ mb: 1, fontSize: '1.5rem !important' }}>
+          <Typography variant='h6' sx={{ mb: 1 }}>
             You are not authorized! 🔐
           </Typography>
           <Typography variant='body2'>You don&prime;t have permission to access this page. Go Home!</Typography>

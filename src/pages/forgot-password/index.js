@@ -64,7 +64,7 @@ const TypographyStyled = styled(Typography)(({ theme }) => ({
 
 const LinkStyled = styled(Link)(({ theme }) => ({
   display: 'flex',
-  fontSize: '0.875rem',
+  fontSize: '0.7rem',
   alignItems: 'center',
   textDecoration: 'none',
   justifyContent: 'center',

@@ -77,7 +77,7 @@ function CourseDetails() {
                   <CardMedia
                     component='img'
                     alt='course img'
-                    image='https://picsum.photos/200/300'
+                    image='https://picsum.photos/id/237/200/300'
                     sx={{ opacity: '0.4', '&:hover': { opacity: 1, cursor: 'pointer' } }}
                   />
                 </Card>
@@ -134,7 +134,7 @@ function CourseDetails() {
               </Grid>
               {/* right section */}
               <Grid item md={4}>
-                <Typography height={'49px'} fontWeight={'700'} fontSize={'20px'} display={'flex'} alignItems={'center'}>
+                <Typography variant={"h5"} height={'49px'} fontWeight={'700'} display={'flex'} alignItems={'center'}>
                   Instructor{' '}
                 </Typography>
                 <Divider sx={{ background: theme => theme.palette.primary.main }} />
@@ -146,7 +146,7 @@ function CourseDetails() {
                       {courseData.instructor.lastName}
                     </Typography>
                   </Box>
-                  <Typography fontWeight={'500'} fontSize={'15px'} color={'black'} mt={5}>
+                  <Typography fontWeight={'500'} fontSize={'0.7rem'} color={'black'} mt={5}>
                     {courseData.instructorDetail}
                   </Typography>
                 </Box>

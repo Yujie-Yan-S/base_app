@@ -28,7 +28,7 @@ const CardStatsVertical = props => {
             />
           )}
         </Box>
-        <Typography sx={{ fontWeight: 600, fontSize: '0.875rem' }}>{title}</Typography>
+        <Typography variant={"h3"} sx={{ fontWeight: 600 }}>{title}</Typography>
         <Box sx={{ mt: 1.5, display: 'flex', flexWrap: 'wrap', mb: 1.5, alignItems: 'flex-start' }}>
           <Typography variant='h6' sx={{ mr: 2 }}>
             {stats}

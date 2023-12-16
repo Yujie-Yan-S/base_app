@@ -254,7 +254,7 @@ return (
 
           <Box display={"flex"} mt={4} mb={4}>
             <Checkbox  checked={checked}  onChange={handleChange} sx={{p:0}}/>
-            <Typography color={theme => theme.palette.primary.main} fontSize={'10px'}>I accept AI Roboto Edu’s Term of Use and Privacy Notice</Typography>
+            <Typography variant={"h6"} color={theme => theme.palette.primary.main}>I accept AI Roboto Edu’s Term of Use and Privacy Notice</Typography>
           </Box>
 
           <Button variant="contained" sx={{width:"50%"}} onClick={handleRegistration}>Sign Up</Button>
@@ -329,7 +329,7 @@ return (
 
         <Box display={'flex'} mb={4}>
           <Checkbox checked={checked} onChange={handleChange} sx={{ p: 0 }} />
-          <Typography color={theme => theme.palette.primary.main} fontSize={'10px'}>
+          <Typography variant={"h6"} color={theme => theme.palette.primary.main}>
             I accept AI Roboto Edu’s Term of Use and Privacy Notice
           </Typography>
         </Box>
@@ -348,7 +348,12 @@ const LoginDialog = ({ open, onClose, initialTab, switchTab }) => {
   }
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth={false} maxWidth={'md'}>
+    <Dialog open={open} onClose={onClose} fullWidth={false} maxWidth={'md'}
+      sx={{'& .css-pzubjk-MuiDialogContent-root':{
+        padding:0,
+          paddingBottom:'1.25em'
+        }}}
+    >
       <Tabs value={initialTab} onChange={handleTabChange} sx={{ display: 'flex' }}>
         <Tab label='Log In' />
         <Tab label='Sign Up' />

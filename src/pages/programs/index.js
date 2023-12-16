@@ -141,7 +141,7 @@ const Programs = () => {
       >
         <Typography variant={'h3'}>Our programs</Typography>
         <Divider sx={{ backgroundColor: theme => theme.palette.primary.main, margin: '2rem', width: '70%' }} />
-        <Box width={'70%'}>
+        <Box width={'70%'} display={"flex"} justifyContent={"center"}>
           <TextField
             ref={inputRef} // Use ref directly
             value={inputValue}
@@ -157,20 +157,21 @@ const Programs = () => {
                 height: '2rem',
               },
               startAdornment: (
-                <InputAdornment position='start' onClick={()=>{handleSelectResult(inputValue);}}>
+                <InputAdornment position='end' onClick={()=>{handleSelectResult(inputValue);}}>
                   <SearchIcon/>
                 </InputAdornment>
               ),
             }}
             id='fullWidth'
-            sx={{ width: '80%', borderRadius: '25px', backgroundColor: '#f0f0f0' }}
+            sx={{ width: '95%', borderRadius: '25px', backgroundColor: '#f0f0f0' }}
           />
           {searchListOpen && (
             <List
               sx={{
-                width: '55%',
+                width: '66%',
                 zIndex: 1,
                 position: 'absolute',
+                top: '26.5%',
                 border: '1px solid #ccc',
                 borderRadius: '4px',
                 boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',

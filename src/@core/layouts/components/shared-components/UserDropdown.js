@@ -115,7 +115,7 @@ const UserDropdown = props => {
             </Badge>
             <Box sx={{ display: 'flex', ml: 3, alignItems: 'flex-start', flexDirection: 'column' }}>
               <Typography sx={{ fontWeight: 600 }}>John Doe</Typography>
-              <Typography variant='body2' sx={{ fontSize: '0.8rem', color: 'text.disabled' }}>
+              <Typography variant='body2' sx={{ color: 'text.disabled' }}>
                 Admin
               </Typography>
             </Box>

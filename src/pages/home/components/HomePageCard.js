@@ -11,12 +11,12 @@ import Grid from "@mui/material/Grid";
 export default function HomePageCard({ image, text, width }) {
   return (
       <Paper elevation={5} sx={{width:width, height:'100%'}}>
-      <Card sx={{width:'100%', height:'100%'}}>
+      <Card sx={{ aspectRatio: '1/1.2' }}>
         <CardActionArea>
           <CardMedia
             component="img"
             height="100%"
-            image={image?image : "https://picsum.photos/300"}
+            image={image?image : "https://picsum.photos/id/237/300"}
             alt=""
           />
           <CardContent sx={{pb:'0px !important',p:3, height:'84px'}} >

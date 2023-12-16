@@ -35,7 +35,7 @@ const ProgramAssesment=({description,imgs})=>{
             justifyContent={'start'}
             alignItems={'center'}
           >
-            <Typography mt={4} sx={{ fontWeight: 600, fontSize: '17px' }}>
+            <Typography variant={"h5"} mt={4} sx={{ fontWeight: 600 }}>
               {
                 description?(description):
                   (<>

@@ -8,26 +8,26 @@ import Divider from "@mui/material/Divider";
 import Card from "./components/card";
 
 const fakedata=[{
-  pic:"https://picsum.photos/200/300",
+  pic:"https://picsum.photos/id/237/200/300",
   instructor:"Dr. Max Li",
   title:"Machine Learning Engineer"
 },
   {
-    pic:"https://picsum.photos/200/300",
+    pic:"https://picsum.photos/id/237/200/300",
     instructor:"Dr. Max Li",
     title:"Machine Learning Engineer"
   },
   {
-    pic:"https://picsum.photos/200/300",
+    pic:"https://picsum.photos/id/237/200/300",
     instructor:"Dr. Max Li",
     title:"Machine Learning Engineer"
   },
   {
-    pic:"https://picsum.photos/200/300",
+    pic:"https://picsum.photos/id/237/200/300",
     instructor:"Dr. Max Li",
     title:"Machine Learning Engineer"
   },{
-    pic:"https://picsum.photos/200/300",
+    pic:"https://picsum.photos/id/237/200/300",
     instructor:"Dr. Max Li",
     title:"Machine Learning Engineer"
   }
@@ -53,7 +53,7 @@ const MyProgram = () => {
 
         {/*My programs text*/}
         <Box height={"145px"} bgcolor={'white'} display={"flex"} justifyContent={"start"} alignItems={"center"}>
-          <Typography fontSize={"32px"} fontWeight={"700"} color={theme => theme.palette.primary.main}>
+          <Typography variant={"h4"} fontWeight={"700"} color={theme => theme.palette.primary.main}>
             My Programs
           </Typography>
         </Box>

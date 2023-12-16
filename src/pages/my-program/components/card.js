@@ -15,7 +15,7 @@ const card = ({pic, title, instructor})=>{
             <img width={'100%'} height={'100%'} style={{borderRadius:'15px', objectFit: 'cover'}} src={pic}></img>
           </Box>
           <Box pl={8} width={'49.2%'}  display={"flex"} flexDirection={"column"} justifyContent={"center"}>
-            <Typography mb={3} fontSize={'20px'} color={theme=> theme.palette.primary.main}>{title}</Typography>
+            <Typography variant={"h6"} mb={3}  color={theme=> theme.palette.primary.main}>{title}</Typography>
             <Typography>{instructor}</Typography>
           </Box>
           <Box display={"flex"} justifyContent={"end"} alignItems={"end"} width={'28.8%'}>

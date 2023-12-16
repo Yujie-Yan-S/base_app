@@ -3,7 +3,8 @@ const navigation = () => [
     title: 'Home',
     path: '/home',
     icon: 'mdi:home-outline',
-    auth: false
+    auth: false,
+    hidden: true
   },
   {
     title: 'Courses',

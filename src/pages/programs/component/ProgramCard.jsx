@@ -62,8 +62,8 @@ export default function ProgramCard({ id, title, description, tag, titleTag, bac
           marginBottom='6px'
           sx={{ backgroundColor: 'transparent' }}
         >
-          <Button variant='contained' href={`/programs/programdetails/${id}`} sx={{ marginLeft: '2rem' }}>
-            <Typography variant='h6' color='white' sx={{ margin: '1rem' }}>
+          <Button variant='contained' size={"small"} href={`/programs/programdetails/${id}`} sx={{ marginLeft: '2rem', marginBottom:'0.5rem'}}>
+            <Typography variant='h6' color='white' sx={{  }}>
               View Program
             </Typography>
           </Button>

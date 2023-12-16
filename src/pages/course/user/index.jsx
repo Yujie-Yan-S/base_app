@@ -27,7 +27,7 @@ const UserCoursePage = () => {
     }
   }, [dispatch])
 
-  const imgData = ['https://picsum.photos/441/229', 'https://picsum.photos/441/229']
+  const imgData = ['https://picsum.photos/441/229', 'https://picsum.photos/id/237/441/229']
 
   return (
     <Box sx={{ height: '100%' }}>
@@ -61,7 +61,7 @@ const UserCoursePage = () => {
               </Grid>
               {/* right section */}
               <Grid item md={4}>
-                <Typography height={'49px'} fontWeight={'700'} fontSize={'20px'} display={'flex'} alignItems={'center'}>
+                <Typography variant={"h6"} height={'49px'} fontWeight={'700'}  display={'flex'} alignItems={'center'}>
                   Instructor
                 </Typography>
                 <Divider sx={{ background: theme => theme.palette.primary.main }} />
@@ -73,7 +73,7 @@ const UserCoursePage = () => {
                       {courseData.data.tutor.firstName}
                     </Typography>
                   </Box>
-                  <Typography fontWeight={'500'} fontSize={'15px'} color={'black'}>
+                  <Typography variant={"h6"} fontWeight={'500'}  color={'black'}>
                     {courseData.data.description}
                   </Typography>
                 </Box>
@@ -86,6 +86,6 @@ const UserCoursePage = () => {
   )
 }
 
-UserCoursePage.authGuard = true
+UserCoursePage.authGuard = false
 
 export default UserCoursePage
