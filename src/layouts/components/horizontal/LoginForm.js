@@ -106,17 +106,17 @@ return false
           />
           {errors.password && <FormHelperText sx={{ color: 'error.main' }}>{errors.password.message}</FormHelperText>}
 
-          <Typography mb={3} mt={3}>
-            Phone number{' '}
-          </Typography>
-          <TextField
-            label='Please enter your phone number'
-            {...register('phoneNumber', { required: 'phone number is required' })}
-            fullWidth={true}
-          />
-          {errors.phoneNumber && (
-            <FormHelperText sx={{ color: 'error.main' }}>{errors.phoneNumber.message}</FormHelperText>
-          )}
+          {/*<Typography mb={3} mt={3}>*/}
+          {/*  Phone number{' '}*/}
+          {/*</Typography>*/}
+          {/*<TextField*/}
+          {/*  label='Please enter your phone number'*/}
+          {/*  {...register('phoneNumber', { required: 'phone number is required' })}*/}
+          {/*  fullWidth={true}*/}
+          {/*/>*/}
+          {/*{errors.phoneNumber && (*/}
+          {/*  <FormHelperText sx={{ color: 'error.main' }}>{errors.phoneNumber.message}</FormHelperText>*/}
+          {/*)}*/}
 
           <Typography mb={3} mt={3}>
             Verification code
