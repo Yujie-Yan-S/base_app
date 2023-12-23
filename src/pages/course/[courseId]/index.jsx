@@ -99,7 +99,7 @@ function CourseDetails() {
                       <Typography variant='h7'>Dr.Max Li</Typography>
                     </Grid>
                     <Grid item md={4.7} display={'flex'} alignItems={'flex-end'}>
-                      <Button variant='contained' sx={{ background: 'white', width: '150px', height: '45%' }}>
+                      <Button variant='contained' size ='large' sx={{ background: 'white'}}>
                         <Typography variant='h7' color='primary.main'>
                           Purchase now
                         </Typography>

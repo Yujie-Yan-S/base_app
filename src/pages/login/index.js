@@ -326,7 +326,7 @@ const LoginPage = () => {
                 />
                 <LinkStyled href='/forgot-password'>Forgot Password?</LinkStyled>
               </Box>
-              <Button fullWidth size='large' type='submit' variant='contained' sx={{ mb: 7 }}>
+              <Button fullWidth size='large' type='submit' variant='contained' size='large' sx={{ mb: 7 }}>
                 Login
               </Button>
               <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>

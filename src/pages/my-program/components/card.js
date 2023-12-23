@@ -19,7 +19,7 @@ const card = ({pic, title, instructor})=>{
             <Typography>{instructor}</Typography>
           </Box>
           <Box display={"flex"} justifyContent={"end"} alignItems={"end"} width={'28.8%'}>
-            <Button sx={{px:8, mr:"-10px"}} variant="contained" endIcon={<ExpandMoreIcon sx={{ fontSize: "30px !important" }}/>}>View Study Process</Button>
+            <Button sx={{px:8, mr:"-10px"}} variant="contained" size ='large' endIcon={<ExpandMoreIcon sx={{ fontSize: "30px !important" }}/>}>View Study Process</Button>
           </Box>
         </Box>
       </Card>
