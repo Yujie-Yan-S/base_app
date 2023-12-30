@@ -64,88 +64,88 @@ const UserLayout = ({ children, contentHeightFixed }) => {
 
   const handleClick = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-
+    console.log('clicked')
     router.push('/home')
   }
 
-  // const AppBrand = () => {
-  //   return (
-  //     <Box
-  //       onClick={handleClick}
-  //       sx={{
-  //         display: 'flex',
-  //         alignItems: 'center',
-  //         '& .shouldHover:hover': {
-  //           opacity: 0.8,
-  //           cursor: 'pointer'
-  //         }
-  //       }}
-  //     >
-  //       <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
-  //
-  //       <Typography
-  //         sx={{ fontSize: 20, pl: 4, mr: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-  //         noWrap
-  //         fontWeight='bold'
-  //       >
-  //         <span className={'shouldHover'}>AI ROBOTO EDU</span>
-  //       </Typography>
-  //     </Box>
-  //   )
-  // }
+  const AppBrand = () => {
+    return (
+      <Box
+        onClick={handleClick}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          '& .shouldHover:hover': {
+            opacity: 0.8,
+            cursor: 'pointer'
+          }
+        }}
+      >
+        <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
 
-    const AppBrand = () => {
-        const [isWideScreen, setIsWideScreen] = useState(false);
+        <Typography
+          sx={{ fontSize: 20, pl: 4, mr: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          noWrap
+          fontWeight='bold'
+        >
+          <span className={'shouldHover'}>AI ROBOTO EDU</span>
+        </Typography>
+      </Box>
+    )
+  }
 
-        const handleClick = () => {
-            // Add your click handling logic here
-        };
-
-        useEffect(() => {
-            // Check if window is defined (client-side)
-            if (typeof window !== 'undefined') {
-                setIsWideScreen(window.innerWidth >= 810);
-
-                const handleResize = () => {
-                    setIsWideScreen(window.innerWidth >= 810);
-                };
-
-                window.addEventListener('resize', handleResize);
-
-                return () => {
-                    window.removeEventListener('resize', handleResize);
-                };
-            }
-        }, []); // Empty dependency array to run this effect only once on mount
-
-        if (!isWideScreen) {
-            return null; // Don't render the component on screens less than 640px wide
-        }
-
-        return (
-            <Box
-                onClick={handleClick}
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    '& .shouldHover:hover': {
-                        opacity: 0.8,
-                        cursor: 'pointer',
-                    },
-                }}
-            >
-                <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
-
-                <Typography
-                    sx={{ fontSize: 20, pl: 4, mr: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                    noWrap
-                    fontWeight='bold'
-                >
-                    <span className={'shouldHover'}>AI ROBOTO EDU</span>
-                </Typography>
-            </Box>
-        );
-    };
+    // const AppBrand = () => {
+    //     const [isWideScreen, setIsWideScreen] = useState(false);
+    //
+    //     const handleClick = () => {
+    //         // Add your click handling logic here
+    //     };
+    //
+    //     useEffect(() => {
+    //         // Check if window is defined (client-side)
+    //         if (typeof window !== 'undefined') {
+    //             setIsWideScreen(window.innerWidth >= 810);
+    //
+    //             const handleResize = () => {
+    //                 setIsWideScreen(window.innerWidth >= 810);
+    //             };
+    //
+    //             window.addEventListener('resize', handleResize);
+    //
+    //             return () => {
+    //                 window.removeEventListener('resize', handleResize);
+    //             };
+    //         }
+    //     }, []); // Empty dependency array to run this effect only once on mount
+    //
+    //     if (!isWideScreen) {
+    //         return null; // Don't render the component on screens less than 640px wide
+    //     }
+    //
+    //     return (
+    //         <Box
+    //             onClick={handleClick}
+    //             sx={{
+    //                 display: 'flex',
+    //                 alignItems: 'center',
+    //                 '& .shouldHover:hover': {
+    //                     opacity: 0.8,
+    //                     cursor: 'pointer',
+    //                 },
+    //             }}
+    //         >
+    //             <img className={'shouldHover'} src='/brand-icon.png' alt='logo' width='28' height='28' />
+    //
+    //             <Typography
+    //                 sx={{ fontSize: 20, pl: 4, mr: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+    //                 noWrap
+    //                 fontWeight='bold'
+    //             >
+    //                 <span className={'shouldHover'} >AI ROBOTO EDU</span>
+    //             </Typography>
+    //         </Box>
+    //     );
+    // };
 
 
 

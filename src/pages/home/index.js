@@ -12,7 +12,9 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { fetchImages } from '../../store/features/carousel_pic_list/carouselImagesSlice'
-import LoginPage from '../login'
+import {useRouter} from "next/router";
+import auth from "../../configs/auth";
+
 
 const Home = () => {
   const settings = {
@@ -23,6 +25,23 @@ const Home = () => {
     slidesToScroll: 1,
     arrows: false
   }
+
+  const router = useRouter()
+
+
+  const handleCardClick = (id) => {
+    console.log('clicked')
+    if (auth.user) {
+      router.push({
+        pathname: '/course/user',
+        query: { userId: id }
+      });
+    } else {
+      router.push({
+        pathname: `/course/${id}`
+      });
+    }
+  };
 
   const Img = styled('img')({
     width:'100%',
@@ -58,10 +77,14 @@ const Home = () => {
     return <Box>Error: {error1}</Box>
   }
 
+  console.log('this is card dta', cardData)
+
   const MyComponent = cardData.map((item, index) => {
     return (
       <Grid key={index} item xs={6} sm={4} lg={3} display='flex' justifyContent='center' alignItems='center'>
-        <HomePageCard text={item.description} image={item.cover==="//media.airobotoedu.com/default.jpg"?item.cover : "https://picsum.photos/id/237/610/582"} width={'80%'} />
+        <HomePageCard
+          click={()=>handleCardClick(item.id)}
+          text={item.description} image={item.cover==="//media.airobotoedu.com/default.jpg"?item.cover : "https://picsum.photos/id/237/610/582"} width={'80%'} />
       </Grid>
     )
   })

@@ -153,8 +153,8 @@ const Programs = () => {
               sx: {
                 position: 'relative',
                 placeHolder: 'Search',
-                borderRadius: '25px',
-                height: '2rem',
+                borderRadius: '8px',
+                height: '3rem',
               },
               startAdornment: (
                 <InputAdornment position='end' onClick={()=>{handleSelectResult(inputValue);}}>
@@ -171,7 +171,7 @@ const Programs = () => {
                 width: '66%',
                 zIndex: 1,
                 position: 'absolute',
-                top: '26.5%',
+                top: '28.2%',
                 border: '1px solid #ccc',
                 borderRadius: '4px',
                 boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
