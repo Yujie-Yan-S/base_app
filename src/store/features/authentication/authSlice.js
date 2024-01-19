@@ -9,14 +9,17 @@ export const generateOTP = createAsyncThunk('auth/generateOTP', async (payload) 
 
 
 export const registerUser = createAsyncThunk('auth/registerUser', async (userData) => {
-  try {
+
     console.log(userData)
     const response = await axios.post('//api.airobotoedu.com/api/register', userData);
 
-    return response.data;
-  } catch (error) {
-    throw error.response.data;
-  }
+    if (response.data.code!=200){
+      throw response.data.msg;
+    }
+    console.log('this is response ', response)
+
+return response.data;
+
 });
 
 const authSlice = createSlice({
@@ -59,6 +62,8 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.status = 'failed';
+        console.log('failed')
+
         state.error = action.error.message;
       });
   },

@@ -30,7 +30,7 @@ import LoginForm from './horizontal/LoginForm'
 import { TextField, Box, Typography, Checkbox } from '@mui/material'
 
 
-function SignupTabContent() {
+function SignupTabContent({  initialTab, switchTab }) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(true);
@@ -105,7 +105,7 @@ function SignupTabContent() {
     if(password!==confirmPassword){
       dispatch(changeErrorMsg("Password not match"))
 
-return;
+      return;
     }
 
 
@@ -117,6 +117,19 @@ return;
       "phoneNumber": phoneNumber,
       "code": verificationCode
     })); // 传递 userData 参数
+    console.log('this is error msg', errorMsg)
+
+    // setTimeout(() => {
+    //   console.log('this is error msg', errorMsg)
+    //   if(!errorMsg){
+    //     setTimeout(() => {
+    //       // 一秒钟后执行这里的代码
+    //       switchTab(0);
+    //     }, 1000); // 1000 毫秒等于 1 秒
+    //   }
+    // }, 1000);
+
+
 
 
   };
@@ -362,7 +375,7 @@ const LoginDialog = ({ open, onClose, initialTab, switchTab }) => {
 
       <DialogContent>
         {initialTab === 0 && <LoginForm onClose={onClose} />} {/* Render Login content when activeTab is 0 */}
-        {initialTab === 1 && <SignupTabContent />} {/* Render Signup content when activeTab is 1 */}
+        {initialTab === 1 && <SignupTabContent initialTab={initialTab} switchTab={switchTab} />} {/* Render Signup content when activeTab is 1 */}
       </DialogContent>
     </Dialog>
   )

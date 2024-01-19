@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Button, FormHelperText, Checkbox } from '@mui/material'
+import {Box, Typography, TextField, Button, FormHelperText, Checkbox, Snackbar} from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useAuth } from 'src/hooks/useAuth'
 import { styled } from '@mui/material/styles'
@@ -6,9 +6,20 @@ import Link from 'next/link'
 import axios from 'axios'
 import { useState } from 'react'
 import MyButton from './component/ButtonWTimeOut'
+import Alert from "@mui/material/Alert";
+import {string} from "yup";
 
 const LoginForm = ({ onClose }) => {
+
+  const [open, setOpen] = useState(false);
   const [codeError, setCodeError] = useState({})
+  const [errMsg, setMsg] = useState("")
+
+
+  const handleClose = () => {
+
+    setOpen(false);
+  };
 
   const CustomTextField = styled(TextField)({
     '& .MuiOutlinedInput-root': {
@@ -47,15 +58,26 @@ const LoginForm = ({ onClose }) => {
 
   const errorCallback = () => {}
 
-  const onSubmit = data => {
-    // console.log(data)
-    auth.login(data, errorCallback)
-    onClose()
-  }
+  const onSubmit = async data => {
+    try {
+      const msg = await auth.login(data, errorCallback);
+      if(msg){
+        setMsg(msg)
+        setOpen(true)
+      }
+      else {
+        onClose();
+
+      }
+    } catch (err) {
+      console.error('An error occurred:', err);
+      if (errorCallback) errorCallback(err);
+    }
+  };
 
   const handleVerificationClick = async () => {
-    if (!phoneNumber || !email) {
-      setCodeError({ error: 'Please enter email and phone number' })
+    if (!email) {
+      setCodeError({ error: 'Please enter email' })
 
 return false
     }
@@ -64,7 +86,7 @@ return false
       const res = await axios.post(
         `http://api.airobotoedu.com/api/phoneNumber/generateOTP/login
     `,
-        { email, phoneNumber }
+        { email}
       )
 
       if (res.data.code === 402) {
@@ -101,6 +123,7 @@ return false
           </Typography>
           <TextField
             label='Please enter your password'
+            type='password'
             {...register('password', { required: 'password is required' })}
             fullWidth={true}
           />
@@ -150,7 +173,13 @@ return false
             </Button>
           </Box>
         </form>
+        <Snackbar color="inherit" open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+            {errMsg}
+          </Alert>
+        </Snackbar>
       </Box>
+
     </Box>
   )
 }
